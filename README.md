@@ -103,6 +103,6 @@ Labels (`setup`, `docs`, `bronze`, `silver`, `gold`, `ops`) and milestones (Phas
 | Member | Main responsibility |
 |---|---|
 | Sanne Almlund | Repository, configuration, CI/CD, environments |
-| _Partner_ | Dataset, ingestion, project definition |
+| Said Vagap | Dataset, ingestion, project definition |
 
 Both members work on the Silver layer together.
