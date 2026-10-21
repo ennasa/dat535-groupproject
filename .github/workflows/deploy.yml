@@ -1,0 +1,31 @@
+name: Deploy
+
+# Manual only until the self-hosted runners exist (#6).
+# Later (#32): push to main -> dev, release tag v* -> prod.
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Target environment
+        type: choice
+        options: [dev, prod]
+        default: dev
+  # push:
+  #   branches: [main]
+  #   tags: ["v*"]
+
+jobs:
+  deploy:
+    runs-on: [self-hosted, "${{ inputs.environment }}"]
+    env:
+      PIPELINE_ENV: ${{ inputs.environment }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install into virtualenv on the VM
+        run: |
+          python3 -m venv .venv
+          .venv/bin/pip install -r requirements.txt
+
+      - name: Smoke check
+        run: .venv/bin/python src/main.py --layers bronze

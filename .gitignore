@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Spark / local data (never commit pipeline data)
+spark-warehouse/
+metastore_db/
+derby.log
+/data/
+*.parquet
+!tests/data/**
+
+# Secrets and local overrides
+.env
+*.local.yaml
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
