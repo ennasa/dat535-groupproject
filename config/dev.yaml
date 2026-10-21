@@ -1,0 +1,8 @@
+storage:
+  root: ./data/dev        # change to the dev VM path when it is set up (#6)
+
+source:
+  periods: ["2025-01"]    # small slice for development
+
+logging:
+  level: DEBUG

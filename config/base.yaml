@@ -1,0 +1,36 @@
+# Shared settings. dev/prod/test.yaml override only what differs.
+# Never put secrets here - they come from environment variables / GitHub secrets.
+
+project:
+  name: dat535-pipeline
+
+storage:
+  root: ./data            # overridden per environment
+  bronze: bronze
+  silver: silver
+  gold: gold
+  quarantine: quarantine
+  manifests: manifests
+
+source:
+  name: TBD               # set when the dataset is chosen (#1)
+  periods: []             # e.g. ["2025-01", "2025-02"]
+
+spark:
+  app_name: dat535-pipeline
+  master: local[*]
+  conf:
+    spark.sql.adaptive.enabled: "true"
+    spark.sql.shuffle.partitions: "8"
+    spark.sql.session.timeZone: UTC
+
+quality:
+  max_reject_ratio: 0.05  # fail the run if more than 5% of records are rejected
+  rules: {}               # filled in during Silver (#17)
+
+run:
+  layers: [bronze, silver, gold]
+  stop_on_quality_failure: true
+
+logging:
+  level: INFO
