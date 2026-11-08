@@ -29,9 +29,9 @@ Out of scope: streaming ingestion, a production-grade dashboard, managed cloud s
 ## 3. Architecture
 
 ```
- Source (TBD)  ── batch, per period
+ Fiskeridirektoratet annual ZIP  ── batch, per catch year
         ▼
- BRONZE   bronze/<source>/period=YYYY-MM/          raw + _source_*, _ingested_at, _run_id
+ BRONZE   bronze/<source>/period=YYYY/source_version=<sha256>/  ZIP, CSV, records/
           manifests/<run_id>.json
         ▼
  SILVER   silver/<table>/                          typed, deduplicated, validated, enriched
@@ -165,29 +165,76 @@ quality:
 ## 7. Layer designs
 
 ### 7.1 Bronze
-- **Method:** batch per period, scheduled to match the source's refresh. _TBD (#9): API or file download._
-- **Preserve:** content written as delivered; only metadata columns added; no rows dropped.
-- **Layout:** partitioned by period, so one period can be reprocessed alone.
-- **Idempotency:** checksums in the manifest; known files are skipped; `--force` overwrites one period.
-- **Late data:** a re-published file has a new checksum, is ingested into its period again, and the change is logged.
-- **Schema changes:** new columns kept and logged; missing or retyped columns logged as warnings and counted in the run summary.
+- **Method (A1 / #9):** download the public annual catch/vessel ZIP over HTTPS and extract its UTF-8, semicolon-separated CSV. Start with catch year 2023. Current and previous two catch years refresh nightly except the night leading into Saturday; older years refresh when needed. The download URL, expected raw schema and local exploration evidence are recorded in [`01_explore_source.ipynb`](../notebooks/01_explore_source.ipynb). Batch ingestion is implemented separately in A2 (#10).
+- **Preserve:** original ZIP and CSV bytes retained; a separate Parquet copy keeps source fields as strings and adds provenance. No rows dropped.
+- **Layout:** partitioned by catch year and archive SHA-256; completed staging directories are renamed into place after row reconciliation.
+- **Idempotency:** completed snapshots are skipped by checksum and recorded in a per-run manifest. Administrative `--force` behaviour remains future work.
+- **Late data:** a revised archive creates another version within the catch year. Earlier versions remain available; Silver must select one recorded snapshot per year.
+- **Schema changes:** compare every CSV header with the versioned 2023 A1 baseline in `src/bronze/expected_schema.json`. Added columns are retained; added, missing, reordered or retyped fields are stored in snapshot/run metadata and included in `LayerResult.message`. A changed snapshot is preserved, but Bronze returns `failed` to stop downstream publication until review.
 
 ### 7.2 Silver (primary focus; filled in after #15)
 Each decision is recorded with its reason.
-- **Data understanding:** what one source record is; essential, optional, derived and unreliable fields.
-- **Grain, keys, model:** _TBD (#16)._ Relationships to reference data and how history is represented.
-- **Cleaning and standardisation:** types, timestamps in UTC, units, names, trimming, exact duplicates.
+- **Data understanding (A4 / #15):** the 2023 Bronze snapshot contains 1,079,929
+  document product lines and 133 source fields. Full profiling found no exact duplicate
+  rows. The five-field candidate key (`Fangstår`, `Salgslag (kode)`,
+  `Dokumenttype (kode)`, `Dokumentnummer`, `Linjenummer`) is complete and unique.
+  Important quality findings are 17,721 rows without `Landingsfylke`, 150 without an
+  `Art FAO (kode)` mapping and one without `Rundvekt`. All tested date and weight
+  values parse after explicit Norwegian date and decimal-comma handling. See
+  [`02_profile_bronze.ipynb`](../notebooks/02_profile_bronze.ipynb) and the compact
+  [A4 evidence](evidence/a4-profile.json).
+- **Grain, keys, model (A5 proposal / #16):** one record is the current version of one
+  document product line. Its proposed non-null key is (`catch_year`, `sales_org_code`,
+  `document_type_code`, `document_number`, `line_number`). The explicit typed contract
+  and direct Bronze mapping are in `src/silver/model.py`; the readable decision record
+  is [`silver-model.md`](silver-model.md). Exact duplicates are removed. A future
+  repeated key is resolved by the greatest document version number, document version
+  timestamp and source update date; conflicting ties are quarantined. Silver uses
+  one approved Bronze snapshot per catch year and preserves its SHA-256; approved
+  revisions atomically rebuild that year. Reference joins are left, many-to-one joins
+  on stable codes, with unmatched rows retained and flagged. **Awaiting Person B review
+  before this joint decision is final.**
+- **Cleaning and standardisation (A6 / #19):** `src/silver/clean.py` maps Bronze to
+  the proposed 74-field contract; applies English `snake_case` names; trims text and
+  converts blanks to null; preserves codes as strings; parses Norwegian dates and
+  decimal commas; converts document-version time from `Europe/Oslo` to UTC; makes units
+  explicit (`_kg`, `_m`, `_nok`); converts the partial-landing flag to boolean; and
+  removes exact non-provenance duplicates. Landing clock time stays local because its
+  time zone is not reliable for every landing. Invalid casts become null for the quality
+  policy rather than being silently discarded. See [`silver-cleaning.md`](silver-cleaning.md).
 - **Quality rules and policy:** _TBD (#17, #18):_ rule → check → action → reason.
-- **Enrichment:** _TBD (#21):_ joins and derived attributes.
+- **Enrichment (A7 proposal / #21):** `src/silver/enrich.py` adds a stable record ID,
+  landing calendar fields, the code-13 following-year flag, catch-to-landing days and
+  domestic/FAO coverage flags. Optional reference tables use validated many-to-one
+  left joins; unmatched codes are retained and flagged. `src/silver/transform.py` wires
+  Bronze selection → clean → rules → enrich → reconciled versioned write and is called
+  by `main.py`. Publication is deliberately blocked until the A5 model is jointly
+  approved and B's rules engine is active. See
+  [`silver-enrichment.md`](silver-enrichment.md).
 - **Quality evidence:** missing, duplicate, invalid, accepted and rejected counts before and after (#22).
 - **Implementation:** DataFrame API and Spark SQL; lower-level APIs only where justified.
-- **Performance:** Spark UI baseline, then only evidence-backed changes, measured before and after (#24, #25).
+- **Performance (A8 local preliminary / #24, #25):** the full 2023 Silver path was
+  measured twice on the same WSL environment using Spark event logs. Replacing an
+  unconditional wide full-row deduplication with a narrow duplicate-key check, exact
+  fallback and one key repartition reduced wall time from 299.392 to 197.808 seconds
+  (33.9%), shuffle from 451.6 to 299.1 MB each way and measured spill from 2.64 GB
+  memory / 648.5 MB disk to zero. A slower first attempt was rejected. See
+  [`performance.md`](performance.md). VM repetition and Spark UI screenshots remain.
 - **Scalability:** behaviour with larger volumes, late data and schema evolution.
 
 ### 7.3 Gold
-- **Consumer and question:** _TBD (#26)._
-- **Tables, dimensions, measures:** _TBD (#27)._ Smaller and shaped for one use, unlike reusable Silver.
-- **Correctness:** totals reconcile with Silver.
+- **Consumer and question (A9 / #26):** an analyst asks how landed fish quantity and
+  species composition vary by Norwegian region and month. The main view filters actual
+  landing year 2023 and Norwegian landings; foreign and off-year coverage remains
+  visible. See [`gold-model.md`](gold-model.md).
+- **Tables, dimensions, measures (A9 / #27):** `src/gold/build.py` builds month, landing
+  region and species dimensions plus a fact at month × region × species grain. The
+  primary measure is summed round weight in source kilograms; product weight and catch
+  value remain separate. It includes line/document counts, missing/zero-weight counts
+  and species share of region/month round weight.
+- **Correctness (A9 / #28):** the candidate reconciles Gold line counts with Silver,
+  rereads every written table and is idempotent. The local preview reconciled 1,079,929
+  lines to 5,496 fact rows. Production input must be approved and rules-validated.
 - **Readiness:** refreshed after each successful run; the manifest records the latest published run.
 - **Upstream failure:** previous Gold stays published; the run is marked failed.
 
@@ -234,16 +281,16 @@ A's chain is the critical path, so it starts first. B builds against the contrac
 
 | # | Issue | Task | What to do · Done when |
 |---|---|---|---|
-| A1 | #9 | Explore the source | Document format, volume per period, refresh pattern, access method, schema and field meanings in a notebook; note obvious quality problems. · Expected schema and access method written down. |
-| A2 | #10 | Batch ingestion | Implement `source.py` and `ingest.run()`: fetch each configured period and write it unchanged to `bronze/<source>/period=…/`, calling B's `add_metadata` and `is_ingested`. · Running dev ingests the configured periods. **M1.** |
-| A3 | #13 | Schema changes | Store the expected schema; compare each batch; log added, missing and retyped columns and include them in `LayerResult.message`. · A changed sample file is detected in a test. |
-| A4 | #15 | Profile the data | In a notebook: null rates, ranges, distinct counts, duplicates and distributions per field; list the problems found with counts. · Profiling results are ready for #16–#18 and quoted in §7.2. |
-| A5 | #16 | Grain, keys, model (with B) | Decide what one Silver record is, its key, how duplicates on the key are resolved and how reference data joins; write `silver/model.py` and §7.2. · Both agree; schema committed. |
-| A6 | #19 | Cleaning | Implement `clean.py`: casts, UTC timestamps, units, names, trimming, exact-duplicate removal. · Tests on bad samples pass. |
-| A7 | #21 | Enrichment | Implement `enrich.py`: reference-data joins and derived fields; wire `transform.run()` (clean → B's rules → enrich → write). · Silver is written for the dev periods. |
-| A8 | #24, #25 | Performance | Record a Spark UI baseline of the Silver job (stages, shuffles, skew, durations); apply only changes the baseline justifies (early filters, partitioning, broadcast joins); measure again. · Before/after numbers and screenshots in the evidence folder. |
-| A9 | #26–#28 | Gold | Define the consumer and the question; design dimensions, measures and aggregations; implement `gold/build.py` with DataFrames / Spark SQL. · Gold tables built from dev Silver. |
-| A10 | #31 | Consumer | Build the notebook, dashboard or model that uses Gold and answers the question. · Ready to show in the demo. |
+| A1 | #9 | Explore the source | **Completed locally for the 2023 snapshot:** source and annual download URL, refresh policy, CSV format, measured volume, 133-column raw string schema, documented grain and essential field meanings, examples and initial quality findings are in [`01_explore_source.ipynb`](../notebooks/01_explore_source.ipynb). Full profiling and Silver model decisions remain A4–A5; issue closure and PR review are separate. |
+| A2 | #10 | Batch ingestion | **Completed locally; M1 verified:** `source.py` and `ingest.run()` downloaded the 2023 archive and reconciled 1,079,929 CSV and Parquet rows. A second dev run skipped the unchanged archive. Includes initial shared contracts, metadata and manifest functions. See [Bronze ingestion](bronze-ingestion.md) and [validation evidence](evidence/a2-validation.json). |
+| A3 | #13 | Schema changes | **Completed locally:** the versioned 133-field raw schema is stored in `src/bronze/expected_schema.json`; `schema.py` detects added, missing, reordered and retyped fields. Reports are logged, stored in snapshot/run metadata and included in `LayerResult.message`. Changed samples are preserved but fail Bronze to stop downstream publication. Automated tests cover changed and unchanged schemas. |
+| A4 | #15 | Profile the data | **Completed locally for the full 2023 Bronze snapshot:** [`02_profile_bronze.ipynb`](../notebooks/02_profile_bronze.ipynb) records exact null rates, raw ranges and distinct counts for all 133 fields; typed date/weight ranges; full-row and candidate-key duplicate checks; important value distributions; and counted quality findings. Results are quoted in §7.2 and stored in [`a4-profile.json`](evidence/a4-profile.json), ready for #16–#18. Issue closure and PR review are separate. |
+| A5 | #16 | Grain, keys, model (with B) | **Proposal implemented for review:** `src/silver/model.py` contains the typed schema, five-field key, deterministic duplicate/history policy and proposed reference joins; §7.2 and [`silver-model.md`](silver-model.md) record the reasons. Tests validate the contract against Bronze. **Not final until Person B reviews and both agree.** |
+| A6 | #19 | Cleaning | **Completed locally against the proposed A5 model:** `src/silver/clean.py` implements casts, documented UTC conversion, explicit units/names, trimming, blank-to-null handling and exact-duplicate removal. Tests cover bad samples and the actual 133-field source fixture; see [`a6-validation.json`](evidence/a6-validation.json). Policy actions and conflicting-key resolution remain B5/A7 work. |
+| A7 | #21 | Enrichment | **Core proposal implemented and integration-tested:** `enrich.py` provides derived fields and safe optional reference joins; `transform.py` wires clean → rules → enrich → staged/reconciled/idempotent write; `main.py` invokes Silver. A mini pipeline passes and safety gates are tested; see [`a7-validation.json`](evidence/a7-validation.json). **Not final:** full dev Silver publication waits for joint A5 approval and B4–B6 quality/quarantine components. |
+| A8 | #24, #25 | Performance | **Preliminary local comparison completed:** reproducible benchmark/event-log tools, a full 1,079,929-row baseline, a documented rejected attempt and a retained optimization measured 33.9% faster with no spill; see [`performance.md`](performance.md) and [`a8-local-comparison.json`](evidence/a8-local-comparison.json). **Not final:** repeat both strategies and capture Spark UI screenshots on the school VM. |
+| A9 | #26–#28 | Gold | **Implementation and local preview completed:** [`gold-model.md`](gold-model.md) defines the consumer, grain and round-weight measure; `gold/build.py` builds and reconciles three dimensions plus the monthly region/species fact. The isolated full preview produced 5,496 facts from 1,079,929 provisional Silver rows. **Not published:** trusted dev Gold waits for B's Silver quality work and Gold validation/publish gate. |
+| A10 | #31 | Consumer | **Local demo notebook completed:** [`03_gold_consumer.ipynb`](../notebooks/03_gold_consumer.ipynb) reads only Gold, provides year/country/county/species filters and answers the seasonal, species and regional question with explicit coverage and quality limits. Regenerate its results after trusted Gold is published. |
 
 ### 9.4 Phases 1–3: Person B (platform)
 
@@ -306,10 +353,10 @@ A's chain is the critical path, so it starts first. B builds against the contrac
 | Stop downstream on failure; gated Gold publishing | Consumers never see Gold built from bad data |
 | Python 3.11, PySpark 3.5.3, Java 17, pinned | PySpark 3.5 doesn't support Python 3.13; laptop, CI and VMs match |
 | Tuning only from Spark UI evidence | The course grades evidence-based optimisation |
-| Dataset: _TBD (#1)_ | _TBD_ |
+| Dataset: Fiskeridirektoratet catch/vessel data, initially 2023 | Annual public archives contain landing dates, geography, species and weights; source exploration and a full-year Bronze run provide initial evidence |
 
 ## 11. Risks
-- **Dataset not chosen:** blocks the definition and Silver. Shortlist and sample this week.
+- **Source revisions and schema changes:** annual snapshots can change; retain versioned raw files, stop downstream use on drift, and update the baseline only after review.
 - **VMs only reachable on campus:** plan a campus session early; CI and development don't need the VMs.
 - **Version mismatch with the VMs:** check the VM Spark version first in #6 and update `requirements.txt`.
 - **A's chain is long:** B takes over performance (#24, #25) or the consumer (#31) if A falls behind.

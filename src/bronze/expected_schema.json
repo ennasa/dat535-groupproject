@@ -1,0 +1,537 @@
+{
+  "version": "2023-a1",
+  "fields": [
+    {
+      "name": "Dokumentnummer",
+      "type": "string"
+    },
+    {
+      "name": "Dokumenttype (kode)",
+      "type": "string"
+    },
+    {
+      "name": "Dokumenttype",
+      "type": "string"
+    },
+    {
+      "name": "Dokument versjonsnummer",
+      "type": "string"
+    },
+    {
+      "name": "Dokument salgsdato",
+      "type": "string"
+    },
+    {
+      "name": "Dokument versjonstidspunkt",
+      "type": "string"
+    },
+    {
+      "name": "Salgslag ID",
+      "type": "string"
+    },
+    {
+      "name": "Salgslag (kode)",
+      "type": "string"
+    },
+    {
+      "name": "Salgslag",
+      "type": "string"
+    },
+    {
+      "name": "Mottaker ID",
+      "type": "string"
+    },
+    {
+      "name": "Mottakernasjonalitet (kode)",
+      "type": "string"
+    },
+    {
+      "name": "Mottakernasjonalitet",
+      "type": "string"
+    },
+    {
+      "name": "Mottaksstasjon",
+      "type": "string"
+    },
+    {
+      "name": "Landingskommune (kode)",
+      "type": "string"
+    },
+    {
+      "name": "Landingskommune",
+      "type": "string"
+    },
+    {
+      "name": "Landingsfylke (kode)",
+      "type": "string"
+    },
+    {
+      "name": "Landingsfylke",
+      "type": "string"
+    },
+    {
+      "name": "Landingsnasjon (kode)",
+      "type": "string"
+    },
+    {
+      "name": "Landingsnasjon",
+      "type": "string"
+    },
+    {
+      "name": "Produksjonsanlegg",
+      "type": "string"
+    },
+    {
+      "name": "Produksjonskommune (kode)",
+      "type": "string"
+    },
+    {
+      "name": "Produksjonskommune",
+      "type": "string"
+    },
+    {
+      "name": "Mottakende fartøy reg.merke",
+      "type": "string"
+    },
+    {
+      "name": "Mottakende fartøy rkal",
+      "type": "string"
+    },
+    {
+      "name": "Mottakende fartøytype (kode)",
+      "type": "string"
+    },
+    {
+      "name": "Mottakende fart.type",
+      "type": "string"
+    },
+    {
+      "name": "Mottakende fartøynasj. (kode)",
+      "type": "string"
+    },
+    {
+      "name": "Mottakende fart.nasj",
+      "type": "string"
+    },
+    {
+      "name": "Fisker ID",
+      "type": "string"
+    },
+    {
+      "name": "Fiskerkommune (kode)",
+      "type": "string"
+    },
+    {
+      "name": "Fiskerkommune",
+      "type": "string"
+    },
+    {
+      "name": "Fiskernasjonalitet (kode)",
+      "type": "string"
+    },
+    {
+      "name": "Fiskernasjonalitet",
+      "type": "string"
+    },
+    {
+      "name": "Fartøy ID",
+      "type": "string"
+    },
+    {
+      "name": "Registreringsmerke (seddel)",
+      "type": "string"
+    },
+    {
+      "name": "Radiokallesignal (seddel)",
+      "type": "string"
+    },
+    {
+      "name": "Fartøynavn",
+      "type": "string"
+    },
+    {
+      "name": "Fartøytype (kode)",
+      "type": "string"
+    },
+    {
+      "name": "Fartøytype",
+      "type": "string"
+    },
+    {
+      "name": "Kvotefartøy reg.merke",
+      "type": "string"
+    },
+    {
+      "name": "Besetning",
+      "type": "string"
+    },
+    {
+      "name": "Fartøykommune (kode)",
+      "type": "string"
+    },
+    {
+      "name": "Fartøykommune",
+      "type": "string"
+    },
+    {
+      "name": "Fartøyfylke (kode)",
+      "type": "string"
+    },
+    {
+      "name": "Fartøyfylke",
+      "type": "string"
+    },
+    {
+      "name": "Fartøynasjonalitet (kode)",
+      "type": "string"
+    },
+    {
+      "name": "Fartøynasjonalitet",
+      "type": "string"
+    },
+    {
+      "name": "Fartøynasjonalitet gruppe",
+      "type": "string"
+    },
+    {
+      "name": "Største lengde",
+      "type": "string"
+    },
+    {
+      "name": "Lengdegruppe (kode)",
+      "type": "string"
+    },
+    {
+      "name": "Lengdegruppe",
+      "type": "string"
+    },
+    {
+      "name": "Bruttotonnasje 1969",
+      "type": "string"
+    },
+    {
+      "name": "Bruttotonnasje annen",
+      "type": "string"
+    },
+    {
+      "name": "Byggeår",
+      "type": "string"
+    },
+    {
+      "name": "Ombyggingsår",
+      "type": "string"
+    },
+    {
+      "name": "Motorkraft",
+      "type": "string"
+    },
+    {
+      "name": "Motorbyggeår",
+      "type": "string"
+    },
+    {
+      "name": "Fangstår",
+      "type": "string"
+    },
+    {
+      "name": "Siste fangstdato",
+      "type": "string"
+    },
+    {
+      "name": "Kvotetype (kode)",
+      "type": "string"
+    },
+    {
+      "name": "Kvotetype",
+      "type": "string"
+    },
+    {
+      "name": "Redskap (kode)",
+      "type": "string"
+    },
+    {
+      "name": "Redskap",
+      "type": "string"
+    },
+    {
+      "name": "Redskap - gruppe (kode)",
+      "type": "string"
+    },
+    {
+      "name": "Redskap - gruppe",
+      "type": "string"
+    },
+    {
+      "name": "Redskap - hovedgruppe (kode)",
+      "type": "string"
+    },
+    {
+      "name": "Redskap - hovedgruppe",
+      "type": "string"
+    },
+    {
+      "name": "Fangstfelt (kode)",
+      "type": "string"
+    },
+    {
+      "name": "Kyst/hav (kode)",
+      "type": "string"
+    },
+    {
+      "name": "Hovedområde (kode)",
+      "type": "string"
+    },
+    {
+      "name": "Hovedområde",
+      "type": "string"
+    },
+    {
+      "name": "Lon (hovedområde)",
+      "type": "string"
+    },
+    {
+      "name": "Lat (hovedområde)",
+      "type": "string"
+    },
+    {
+      "name": "Lokasjon (kode)",
+      "type": "string"
+    },
+    {
+      "name": "Lon (lokasjon)",
+      "type": "string"
+    },
+    {
+      "name": "Lat (lokasjon)",
+      "type": "string"
+    },
+    {
+      "name": "Sone (kode)",
+      "type": "string"
+    },
+    {
+      "name": "Sone",
+      "type": "string"
+    },
+    {
+      "name": "Områdegruppering (kode)",
+      "type": "string"
+    },
+    {
+      "name": "Områdegruppering",
+      "type": "string"
+    },
+    {
+      "name": "Hovedområde FAO (kode)",
+      "type": "string"
+    },
+    {
+      "name": "Hovedområde FAO",
+      "type": "string"
+    },
+    {
+      "name": "Nord/sør for 62 grader nord",
+      "type": "string"
+    },
+    {
+      "name": "Fangstdagbok (nummer)",
+      "type": "string"
+    },
+    {
+      "name": "Fangstdagbok (turnummer)",
+      "type": "string"
+    },
+    {
+      "name": "Landingsdato",
+      "type": "string"
+    },
+    {
+      "name": "Landingsklokkeslett",
+      "type": "string"
+    },
+    {
+      "name": "Landingsmåned (kode)",
+      "type": "string"
+    },
+    {
+      "name": "Landingsmåned",
+      "type": "string"
+    },
+    {
+      "name": "Landingstidspunkt",
+      "type": "string"
+    },
+    {
+      "name": "Dellanding (signal)",
+      "type": "string"
+    },
+    {
+      "name": "Neste mottaksstasjon",
+      "type": "string"
+    },
+    {
+      "name": "Forrige mottakstasjon",
+      "type": "string"
+    },
+    {
+      "name": "Linjenummer",
+      "type": "string"
+    },
+    {
+      "name": "Art - FDIR (kode)",
+      "type": "string"
+    },
+    {
+      "name": "Art - FDIR",
+      "type": "string"
+    },
+    {
+      "name": "Art (kode)",
+      "type": "string"
+    },
+    {
+      "name": "Art",
+      "type": "string"
+    },
+    {
+      "name": "Art - gruppe (kode)",
+      "type": "string"
+    },
+    {
+      "name": "Art - gruppe",
+      "type": "string"
+    },
+    {
+      "name": "Art - hovedgruppe (kode)",
+      "type": "string"
+    },
+    {
+      "name": "Art - hovedgruppe",
+      "type": "string"
+    },
+    {
+      "name": "Art FAO (kode)",
+      "type": "string"
+    },
+    {
+      "name": "Art FAO",
+      "type": "string"
+    },
+    {
+      "name": "Produkttilstand (kode)",
+      "type": "string"
+    },
+    {
+      "name": "Produkttilstand",
+      "type": "string"
+    },
+    {
+      "name": "Konserveringsmåte (kode)",
+      "type": "string"
+    },
+    {
+      "name": "Konserveringsmåte",
+      "type": "string"
+    },
+    {
+      "name": "Landingsmåte (kode)",
+      "type": "string"
+    },
+    {
+      "name": "Landingsmåte",
+      "type": "string"
+    },
+    {
+      "name": "Kvalitet (kode)",
+      "type": "string"
+    },
+    {
+      "name": "Kvalitet",
+      "type": "string"
+    },
+    {
+      "name": "Størrelsesgruppering (kode)",
+      "type": "string"
+    },
+    {
+      "name": "Anvendelse (kode)",
+      "type": "string"
+    },
+    {
+      "name": "Anvendelse",
+      "type": "string"
+    },
+    {
+      "name": "Anvendelse hovedgruppe (kode)",
+      "type": "string"
+    },
+    {
+      "name": "Anvendelse hovedgruppe",
+      "type": "string"
+    },
+    {
+      "name": "Antall stykk",
+      "type": "string"
+    },
+    {
+      "name": "Bruttovekt",
+      "type": "string"
+    },
+    {
+      "name": "Produktvekt",
+      "type": "string"
+    },
+    {
+      "name": "Produktvekt over kvote",
+      "type": "string"
+    },
+    {
+      "name": "Rundvekt over kvote",
+      "type": "string"
+    },
+    {
+      "name": "Rundvekt",
+      "type": "string"
+    },
+    {
+      "name": "Enhetspris for kjøper",
+      "type": "string"
+    },
+    {
+      "name": "Beløp for kjøper",
+      "type": "string"
+    },
+    {
+      "name": "Enhetspris for fisker",
+      "type": "string"
+    },
+    {
+      "name": "Beløp for fisker",
+      "type": "string"
+    },
+    {
+      "name": "Støttebeløp",
+      "type": "string"
+    },
+    {
+      "name": "Lagsavgift",
+      "type": "string"
+    },
+    {
+      "name": "Inndradd fangstverdi",
+      "type": "string"
+    },
+    {
+      "name": "Etterbetaling",
+      "type": "string"
+    },
+    {
+      "name": "Fangstverdi",
+      "type": "string"
+    },
+    {
+      "name": "Oppdateringstidspunkt",
+      "type": "string"
+    }
+  ]
+}

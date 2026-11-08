@@ -1,0 +1,224 @@
+{
+  "generated_at_utc": "2026-11-08T21:51:22.523502+00:00",
+  "status": "unvalidated local preview; not published Gold",
+  "consumer_question": "How do landed fish quantity and species composition vary by Norwegian region and month?",
+  "main_scope": "landing_country_code=NOR and landing year=2023",
+  "primary_measure": "round weight in tonnes (source kilograms / 1000)",
+  "gold_candidate": {
+    "silver_rows_in": 1079929,
+    "fact_line_count": 1079929,
+    "table_rows": {
+      "dim_month": 22,
+      "dim_landing_region": 22,
+      "dim_species": 158,
+      "fact_monthly_species_region": 5496
+    },
+    "unvalidated_preview": true
+  },
+  "scope_totals": {
+    "round_weight_tonnes": 2492144.338,
+    "line_count": 1063868,
+    "missing_round_weight_rows": 1,
+    "zero_round_weight_rows": 168031
+  },
+  "landing_year_coverage": [
+    {
+      "year": 2022,
+      "line_count": 1
+    },
+    {
+      "year": 2023,
+      "line_count": 1078473
+    },
+    {
+      "year": 2024,
+      "line_count": 1455
+    }
+  ],
+  "monthly": [
+    {
+      "month_id": "2023-01",
+      "round_weight_tonnes": 232513.779,
+      "line_count": 76007
+    },
+    {
+      "month_id": "2023-02",
+      "round_weight_tonnes": 226964.179,
+      "line_count": 98345
+    },
+    {
+      "month_id": "2023-03",
+      "round_weight_tonnes": 377637.044,
+      "line_count": 212536
+    },
+    {
+      "month_id": "2023-04",
+      "round_weight_tonnes": 231849.48,
+      "line_count": 133718
+    },
+    {
+      "month_id": "2023-05",
+      "round_weight_tonnes": 148521.423,
+      "line_count": 68235
+    },
+    {
+      "month_id": "2023-06",
+      "round_weight_tonnes": 183910.202,
+      "line_count": 65498
+    },
+    {
+      "month_id": "2023-07",
+      "round_weight_tonnes": 108794.002,
+      "line_count": 65543
+    },
+    {
+      "month_id": "2023-08",
+      "round_weight_tonnes": 203165.021,
+      "line_count": 83997
+    },
+    {
+      "month_id": "2023-09",
+      "round_weight_tonnes": 185572.568,
+      "line_count": 65272
+    },
+    {
+      "month_id": "2023-10",
+      "round_weight_tonnes": 282289.153,
+      "line_count": 71404
+    },
+    {
+      "month_id": "2023-11",
+      "round_weight_tonnes": 241040.534,
+      "line_count": 78821
+    },
+    {
+      "month_id": "2023-12",
+      "round_weight_tonnes": 69886.952,
+      "line_count": 44492
+    }
+  ],
+  "top_species": [
+    {
+      "species_code": "0102001",
+      "species_name": "Norsk vårgytende sild",
+      "round_weight_tonnes": 397427.791,
+      "line_count": 7201
+    },
+    {
+      "species_code": "0105001",
+      "species_name": "Kolmule",
+      "round_weight_tonnes": 383698.045,
+      "line_count": 642
+    },
+    {
+      "species_code": "0201001",
+      "species_name": "Torsk",
+      "round_weight_tonnes": 344357.115,
+      "line_count": 310051
+    },
+    {
+      "species_code": "0104001",
+      "species_name": "Makrell",
+      "round_weight_tonnes": 342080.095,
+      "line_count": 6865
+    },
+    {
+      "species_code": "0203001",
+      "species_name": "Sei",
+      "round_weight_tonnes": 234935.876,
+      "line_count": 117905
+    },
+    {
+      "species_code": "0901001",
+      "species_name": "Stortare",
+      "round_weight_tonnes": 173103.527,
+      "line_count": 1853
+    },
+    {
+      "species_code": "0103004",
+      "species_name": "Nordsjøsild",
+      "round_weight_tonnes": 142097.999,
+      "line_count": 1941
+    },
+    {
+      "species_code": "0202001",
+      "species_name": "Hyse",
+      "round_weight_tonnes": 102976.355,
+      "line_count": 85605
+    },
+    {
+      "species_code": "0505001",
+      "species_name": "Dypvannsreke",
+      "round_weight_tonnes": 52345.48,
+      "line_count": 35235
+    },
+    {
+      "species_code": "0302003",
+      "species_name": "Snabeluer",
+      "round_weight_tonnes": 44218.371,
+      "line_count": 2276
+    }
+  ],
+  "top_counties": [
+    {
+      "landing_county_code": "54",
+      "landing_county_name": "Troms og Finnmark",
+      "round_weight_tonnes": 607963.588,
+      "line_count": 427794
+    },
+    {
+      "landing_county_code": "11",
+      "landing_county_name": "Rogaland",
+      "round_weight_tonnes": 573913.652,
+      "line_count": 39064
+    },
+    {
+      "landing_county_code": "15",
+      "landing_county_name": "Møre og Romsdal",
+      "round_weight_tonnes": 507485.081,
+      "line_count": 82568
+    },
+    {
+      "landing_county_code": "18",
+      "landing_county_name": "Nordland",
+      "round_weight_tonnes": 338684.636,
+      "line_count": 306307
+    },
+    {
+      "landing_county_code": "46",
+      "landing_county_name": "Vestland",
+      "round_weight_tonnes": 283055.291,
+      "line_count": 47745
+    },
+    {
+      "landing_county_code": "50",
+      "landing_county_name": "Trøndelag",
+      "round_weight_tonnes": 145168.936,
+      "line_count": 56665
+    },
+    {
+      "landing_county_code": "UNKNOWN",
+      "landing_county_name": "Unknown / not supplied",
+      "round_weight_tonnes": 30064.795,
+      "line_count": 3106
+    },
+    {
+      "landing_county_code": "42",
+      "landing_county_name": "Agder",
+      "round_weight_tonnes": 4008.555,
+      "line_count": 47183
+    },
+    {
+      "landing_county_code": "38",
+      "landing_county_name": "Vestfold og Telemark",
+      "round_weight_tonnes": 893.581,
+      "line_count": 41354
+    },
+    {
+      "landing_county_code": "30",
+      "landing_county_name": "Viken",
+      "round_weight_tonnes": 889.958,
+      "line_count": 11315
+    }
+  ]
+}

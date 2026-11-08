@@ -13,8 +13,10 @@ storage:
   manifests: manifests
 
 source:
-  name: TBD               # set when the dataset is chosen (#1)
-  periods: []             # e.g. ["2025-01", "2025-02"]
+  name: fiskeridir_catch
+  periods: []             # Annual catch years, e.g. ["2023"]
+  url_template: https://register.fiskeridir.no/uttrekk/fangstdata_{period}.csv.zip
+  timeout_seconds: 120
 
 spark:
   app_name: dat535-pipeline
@@ -27,6 +29,15 @@ spark:
 quality:
   max_reject_ratio: 0.05  # fail the run if more than 5% of records are rejected
   rules: {}               # filled in during Silver (#17)
+  allow_unvalidated_silver: false
+
+silver:
+  allow_provisional_model: false
+  approved_source_versions: {}
+  dedup_strategy: optimized
+
+gold:
+  allow_unvalidated_silver: false
 
 run:
   layers: [bronze, silver, gold]

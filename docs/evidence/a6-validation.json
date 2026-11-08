@@ -1,0 +1,36 @@
+{
+  "task": "A6 cleaning",
+  "validated_on": "2026-11-08",
+  "environment": {
+    "platform": "local Ubuntu WSL",
+    "spark": "3.5.3",
+    "java": "17"
+  },
+  "model": {
+    "version": "a5-proposal-1",
+    "approval_status": "awaiting-person-b-review",
+    "target_fields": 74
+  },
+  "checks": {
+    "ruff": "passed",
+    "silver_tests": "9 passed",
+    "full_test_suite": "43 passed",
+    "actual_source_fixture": {
+      "source_fields": 133,
+      "records": 2,
+      "result": "passed"
+    }
+  },
+  "covered_behaviour": [
+    "text trimming and blank-to-null conversion",
+    "leading-zero identifier and code preservation",
+    "Norwegian date parsing",
+    "nanosecond source timestamp parsing and Europe/Oslo to UTC conversion",
+    "decimal-comma parsing and explicit units",
+    "0/1 boolean conversion",
+    "invalid cast to null",
+    "exact non-provenance duplicate removal",
+    "missing Bronze contract rejection"
+  ],
+  "boundary": "Reject/correct/flag policy, conflicting-key resolution, enrichment and Silver publication are not part of A6."
+}

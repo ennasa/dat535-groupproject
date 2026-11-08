@@ -1,0 +1,47 @@
+{
+  "task": "A8 local Silver performance comparison",
+  "validated_on": "2026-11-08",
+  "scope": "preliminary local Ubuntu WSL; VM repetition and Spark UI screenshots pending",
+  "validation": {
+    "ruff": "passed",
+    "full_test_suite": "51 passed"
+  },
+  "constant_inputs": {
+    "bronze_rows": 1079929,
+    "silver_rows": 1079929,
+    "spark": "3.5.3",
+    "java": "17",
+    "master": "local[*]",
+    "shuffle_partitions": 8
+  },
+  "baseline": {
+    "wall_seconds": 299.392,
+    "application_seconds": 271.816,
+    "shuffle_read_bytes": 451593377,
+    "shuffle_write_bytes": 451593377,
+    "memory_spill_bytes": 2642391360,
+    "disk_spill_bytes": 648469883,
+    "largest_task_seconds": 160.795
+  },
+  "rejected_first_attempt": {
+    "wall_seconds": 441.147,
+    "reason": "Narrow duplicate-key check removed spill but preserved skewed source partitions, so the straggler was repeated in later actions."
+  },
+  "final_local": {
+    "wall_seconds": 197.808,
+    "application_seconds": 182.358,
+    "shuffle_read_bytes": 299143757,
+    "shuffle_write_bytes": 299143757,
+    "memory_spill_bytes": 0,
+    "disk_spill_bytes": 0,
+    "largest_task_seconds": 103.991
+  },
+  "improvement": {
+    "wall_time_percent": 33.9,
+    "application_time_percent": 32.9,
+    "shuffle_bytes_percent": 33.8,
+    "memory_spill_percent": 100.0,
+    "disk_spill_percent": 100.0
+  },
+  "retained_change": "Check duplicate candidates on the five-field key; use full exact-dedup fallback only when candidates exist; otherwise repartition once by the unique business key."
+}

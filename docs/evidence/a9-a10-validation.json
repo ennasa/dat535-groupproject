@@ -1,0 +1,35 @@
+{
+  "tasks": ["A9 Gold", "A10 consumer"],
+  "validated_on": "2026-11-08",
+  "environment": {
+    "platform": "local Ubuntu WSL",
+    "spark": "3.5.3",
+    "java": "17"
+  },
+  "validation": {
+    "ruff": "passed",
+    "full_test_suite": "57 passed",
+    "consumer_notebook_cells": 14,
+    "notebook_json": "valid"
+  },
+  "full_preview": {
+    "status": "unvalidated local preview; not published Gold",
+    "silver_rows_in": 1079929,
+    "fact_line_count": 1079929,
+    "dim_month_rows": 22,
+    "dim_landing_region_rows": 22,
+    "dim_species_rows": 158,
+    "fact_rows": 5496,
+    "reconciliation": "passed"
+  },
+  "main_consumer_scope": {
+    "landing_country_code": "NOR",
+    "landing_year": 2023,
+    "round_weight_tonnes": 2492144.338,
+    "source_line_count": 1063868,
+    "largest_month": "2023-03",
+    "largest_species": "Norsk vårgytende sild",
+    "largest_landing_county": "Troms og Finnmark"
+  },
+  "remaining_gate": "Regenerate from approved, rules-validated Silver after Person B implements validation, quarantine and Gold publication."
+}

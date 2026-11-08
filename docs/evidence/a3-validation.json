@@ -1,0 +1,36 @@
+{
+  "validated_at": "2026-11-07T19:13:02Z",
+  "environment": {
+    "platform": "Ubuntu WSL",
+    "python": "3.12.3",
+    "java_major": 17,
+    "pyspark": "3.5.3"
+  },
+  "checks": {
+    "ruff": "passed",
+    "pytest_passed": 34,
+    "schema_tests": [
+      "unchanged schema",
+      "added columns",
+      "missing columns",
+      "reordered columns",
+      "retyped columns",
+      "changed snapshot preserved and Bronze failed"
+    ]
+  },
+  "expected_schema": {
+    "version": "2023-a1",
+    "columns": 133,
+    "raw_type": "string"
+  },
+  "real_snapshot_check": {
+    "run_id": "a3-schema-check",
+    "period": "2023",
+    "archive_sha256": "71783c32df9bdf3af86c0fa3ae4b56523d7dea4836349189490d2dcbf99a0592",
+    "ingestion_status": "skipped",
+    "schema_status": "unchanged",
+    "actual_columns": 133,
+    "layer_message": "Configured snapshots already ingested; 2023: schema unchanged (133 columns)"
+  },
+  "manifest": "data/dev/manifests/a3-schema-check.json"
+}

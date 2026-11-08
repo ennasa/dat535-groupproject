@@ -1,0 +1,1366 @@
+{
+  "generated_at_utc": "2026-11-07T21:33:20.978579+00:00",
+  "snapshot": "data/dev/bronze/fiskeridir_catch/period=2023/source_version=71783c32df9bdf3af86c0fa3ae4b56523d7dea4836349189490d2dcbf99a0592/records",
+  "schema_version": "2023-a1",
+  "row_count": 1079929,
+  "source_column_count": 133,
+  "field_profile": [
+    {
+      "column": "Dokumentnummer",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 227967,
+      "raw_min": "1009251",
+      "raw_max": "999950"
+    },
+    {
+      "column": "Dokumenttype (kode)",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 2,
+      "raw_min": "0",
+      "raw_max": "1"
+    },
+    {
+      "column": "Dokumenttype",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 2,
+      "raw_min": "Landingsdokument",
+      "raw_max": "Sluttseddeldokument"
+    },
+    {
+      "column": "Dokument versjonsnummer",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 136,
+      "raw_min": "1",
+      "raw_max": "99"
+    },
+    {
+      "column": "Dokument salgsdato",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 490,
+      "raw_min": "01.01.2023",
+      "raw_max": "31.12.2023"
+    },
+    {
+      "column": "Dokument versjonstidspunkt",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 163182,
+      "raw_min": "01.01.2024 17.29.11,459000000",
+      "raw_max": "31.10.2024 23.07.49,000000000"
+    },
+    {
+      "column": "Salgslag ID",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 5,
+      "raw_min": "916437110",
+      "raw_max": "951206091"
+    },
+    {
+      "column": "Salgslag (kode)",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 5,
+      "raw_min": "2",
+      "raw_max": "8"
+    },
+    {
+      "column": "Salgslag",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 5,
+      "raw_min": "Fiskehav SA",
+      "raw_max": "Vest-Norges Fiskesalslag"
+    },
+    {
+      "column": "Mottaker ID",
+      "missing_count": 1079929,
+      "missing_percent": 100.0,
+      "distinct_raw_values": 1,
+      "raw_min": "",
+      "raw_max": ""
+    },
+    {
+      "column": "Mottakernasjonalitet (kode)",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 9,
+      "raw_min": "ARG",
+      "raw_max": "URY"
+    },
+    {
+      "column": "Mottakernasjonalitet",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 9,
+      "raw_min": "ARGENTINA",
+      "raw_max": "URUGUAY"
+    },
+    {
+      "column": "Mottaksstasjon",
+      "missing_count": 14615,
+      "missing_percent": 1.3533,
+      "distinct_raw_values": 561,
+      "raw_min": "",
+      "raw_max": "ØF56"
+    },
+    {
+      "column": "Landingskommune (kode)",
+      "missing_count": 14615,
+      "missing_percent": 1.3533,
+      "distinct_raw_values": 163,
+      "raw_min": "",
+      "raw_max": "9990"
+    },
+    {
+      "column": "Landingskommune",
+      "missing_count": 17721,
+      "missing_percent": 1.6409,
+      "distinct_raw_values": 154,
+      "raw_min": "",
+      "raw_max": "ØYGARDEN"
+    },
+    {
+      "column": "Landingsfylke (kode)",
+      "missing_count": 17721,
+      "missing_percent": 1.6409,
+      "distinct_raw_values": 14,
+      "raw_min": "",
+      "raw_max": "56"
+    },
+    {
+      "column": "Landingsfylke",
+      "missing_count": 17721,
+      "missing_percent": 1.6409,
+      "distinct_raw_values": 14,
+      "raw_min": "",
+      "raw_max": "Viken"
+    },
+    {
+      "column": "Landingsnasjon (kode)",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 9,
+      "raw_min": "ARG",
+      "raw_max": "URY"
+    },
+    {
+      "column": "Landingsnasjon",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 9,
+      "raw_min": "ARGENTINA",
+      "raw_max": "URUGUAY"
+    },
+    {
+      "column": "Produksjonsanlegg",
+      "missing_count": 150886,
+      "missing_percent": 13.9718,
+      "distinct_raw_values": 459,
+      "raw_min": "",
+      "raw_max": "ØF56"
+    },
+    {
+      "column": "Produksjonskommune (kode)",
+      "missing_count": 150886,
+      "missing_percent": 13.9718,
+      "distinct_raw_values": 140,
+      "raw_min": "",
+      "raw_max": "5634"
+    },
+    {
+      "column": "Produksjonskommune",
+      "missing_count": 150991,
+      "missing_percent": 13.9816,
+      "distinct_raw_values": 131,
+      "raw_min": "",
+      "raw_max": "ØYGARDEN"
+    },
+    {
+      "column": "Mottakende fartøy reg.merke",
+      "missing_count": 1075463,
+      "missing_percent": 99.5865,
+      "distinct_raw_values": 60,
+      "raw_min": "",
+      "raw_max": "Ø 0300H"
+    },
+    {
+      "column": "Mottakende fartøy rkal",
+      "missing_count": 1075470,
+      "missing_percent": 99.5871,
+      "distinct_raw_values": 60,
+      "raw_min": "",
+      "raw_max": "VL1A"
+    },
+    {
+      "column": "Mottakende fartøytype (kode)",
+      "missing_count": 1075463,
+      "missing_percent": 99.5865,
+      "distinct_raw_values": 4,
+      "raw_min": "",
+      "raw_max": "05"
+    },
+    {
+      "column": "Mottakende fart.type",
+      "missing_count": 1075463,
+      "missing_percent": 99.5865,
+      "distinct_raw_values": 4,
+      "raw_min": "",
+      "raw_max": "Transportfartøy"
+    },
+    {
+      "column": "Mottakende fartøynasj. (kode)",
+      "missing_count": 1075463,
+      "missing_percent": 99.5865,
+      "distinct_raw_values": 2,
+      "raw_min": "",
+      "raw_max": "NOR"
+    },
+    {
+      "column": "Mottakende fart.nasj",
+      "missing_count": 1075463,
+      "missing_percent": 99.5865,
+      "distinct_raw_values": 2,
+      "raw_min": "",
+      "raw_max": "NORGE"
+    },
+    {
+      "column": "Fisker ID",
+      "missing_count": 85797,
+      "missing_percent": 7.9447,
+      "distinct_raw_values": 4334,
+      "raw_min": "",
+      "raw_max": "999660541"
+    },
+    {
+      "column": "Fiskerkommune (kode)",
+      "missing_count": 31356,
+      "missing_percent": 2.9035,
+      "distinct_raw_values": 245,
+      "raw_min": "",
+      "raw_max": "5634"
+    },
+    {
+      "column": "Fiskerkommune",
+      "missing_count": 31869,
+      "missing_percent": 2.951,
+      "distinct_raw_values": 234,
+      "raw_min": "",
+      "raw_max": "ØYGARDEN"
+    },
+    {
+      "column": "Fiskernasjonalitet (kode)",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 14,
+      "raw_min": "DEU",
+      "raw_max": "SWE"
+    },
+    {
+      "column": "Fiskernasjonalitet",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 14,
+      "raw_min": "DANMARK",
+      "raw_max": "TYSKLAND"
+    },
+    {
+      "column": "Fartøy ID",
+      "missing_count": 54536,
+      "missing_percent": 5.05,
+      "distinct_raw_values": 4800,
+      "raw_min": "",
+      "raw_max": "2023124782"
+    },
+    {
+      "column": "Registreringsmerke (seddel)",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 7343,
+      "raw_min": "11480",
+      "raw_max": "Ø 0300H"
+    },
+    {
+      "column": "Radiokallesignal (seddel)",
+      "missing_count": 98588,
+      "missing_percent": 9.1291,
+      "distinct_raw_values": 4312,
+      "raw_min": "",
+      "raw_max": "ZBG050"
+    },
+    {
+      "column": "Fartøynavn",
+      "missing_count": 54536,
+      "missing_percent": 5.05,
+      "distinct_raw_values": 3995,
+      "raw_min": "",
+      "raw_max": "ØYÅD"
+    },
+    {
+      "column": "Fartøytype (kode)",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 12,
+      "raw_min": "01",
+      "raw_max": "15"
+    },
+    {
+      "column": "Fartøytype",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 12,
+      "raw_min": "Fiskefartøy",
+      "raw_max": "Uten fartøy"
+    },
+    {
+      "column": "Kvotefartøy reg.merke",
+      "missing_count": 811318,
+      "missing_percent": 75.127,
+      "distinct_raw_values": 2538,
+      "raw_min": "",
+      "raw_max": "Ø 0300H"
+    },
+    {
+      "column": "Besetning",
+      "missing_count": 213702,
+      "missing_percent": 19.7885,
+      "distinct_raw_values": 55,
+      "raw_min": "",
+      "raw_max": "9"
+    },
+    {
+      "column": "Fartøykommune (kode)",
+      "missing_count": 54536,
+      "missing_percent": 5.05,
+      "distinct_raw_values": 189,
+      "raw_min": "",
+      "raw_max": "5444"
+    },
+    {
+      "column": "Fartøykommune",
+      "missing_count": 54536,
+      "missing_percent": 5.05,
+      "distinct_raw_values": 189,
+      "raw_min": "",
+      "raw_max": "ØYGARDEN"
+    },
+    {
+      "column": "Fartøyfylke (kode)",
+      "missing_count": 54536,
+      "missing_percent": 5.05,
+      "distinct_raw_values": 12,
+      "raw_min": "",
+      "raw_max": "54"
+    },
+    {
+      "column": "Fartøyfylke",
+      "missing_count": 54536,
+      "missing_percent": 5.05,
+      "distinct_raw_values": 12,
+      "raw_min": "",
+      "raw_max": "Viken"
+    },
+    {
+      "column": "Fartøynasjonalitet (kode)",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 14,
+      "raw_min": "DEU",
+      "raw_max": "SWE"
+    },
+    {
+      "column": "Fartøynasjonalitet",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 14,
+      "raw_min": "DANMARK",
+      "raw_max": "TYSKLAND"
+    },
+    {
+      "column": "Fartøynasjonalitet gruppe",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 2,
+      "raw_min": "Norske fartøy",
+      "raw_max": "Utenlandske fartøy"
+    },
+    {
+      "column": "Største lengde",
+      "missing_count": 54536,
+      "missing_percent": 5.05,
+      "distinct_raw_values": 949,
+      "raw_min": "",
+      "raw_max": "9,99"
+    },
+    {
+      "column": "Lengdegruppe (kode)",
+      "missing_count": 54536,
+      "missing_percent": 5.05,
+      "distinct_raw_values": 6,
+      "raw_min": "",
+      "raw_max": "5"
+    },
+    {
+      "column": "Lengdegruppe",
+      "missing_count": 54536,
+      "missing_percent": 5.05,
+      "distinct_raw_values": 6,
+      "raw_min": "",
+      "raw_max": "Under 11 m"
+    },
+    {
+      "column": "Bruttotonnasje 1969",
+      "missing_count": 952775,
+      "missing_percent": 88.2257,
+      "distinct_raw_values": 255,
+      "raw_min": "",
+      "raw_max": "987"
+    },
+    {
+      "column": "Bruttotonnasje annen",
+      "missing_count": 526845,
+      "missing_percent": 48.7852,
+      "distinct_raw_values": 158,
+      "raw_min": "",
+      "raw_max": "99"
+    },
+    {
+      "column": "Byggeår",
+      "missing_count": 54737,
+      "missing_percent": 5.0686,
+      "distinct_raw_values": 86,
+      "raw_min": "",
+      "raw_max": "2023"
+    },
+    {
+      "column": "Ombyggingsår",
+      "missing_count": 920833,
+      "missing_percent": 85.2679,
+      "distinct_raw_values": 54,
+      "raw_min": "",
+      "raw_max": "2023"
+    },
+    {
+      "column": "Motorkraft",
+      "missing_count": 55428,
+      "missing_percent": 5.1326,
+      "distinct_raw_values": 515,
+      "raw_min": "",
+      "raw_max": "999"
+    },
+    {
+      "column": "Motorbyggeår",
+      "missing_count": 57157,
+      "missing_percent": 5.2927,
+      "distinct_raw_values": 65,
+      "raw_min": "",
+      "raw_max": "80"
+    },
+    {
+      "column": "Fangstår",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 1,
+      "raw_min": "2023",
+      "raw_max": "2023"
+    },
+    {
+      "column": "Siste fangstdato",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 366,
+      "raw_min": "01.01.2023",
+      "raw_max": "31.12.2023"
+    },
+    {
+      "column": "Kvotetype (kode)",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 13,
+      "raw_min": "01",
+      "raw_max": "15"
+    },
+    {
+      "column": "Kvotetype",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 13,
+      "raw_min": "Agnkvote",
+      "raw_max": "Vanlig kvote, salg til turist"
+    },
+    {
+      "column": "Redskap (kode)",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 33,
+      "raw_min": "10",
+      "raw_max": "90"
+    },
+    {
+      "column": "Redskap",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 33,
+      "raw_min": "Andre liner",
+      "raw_max": "Udefinert trål"
+    },
+    {
+      "column": "Redskap - gruppe (kode)",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 8,
+      "raw_min": "1",
+      "raw_max": "9"
+    },
+    {
+      "column": "Redskap - gruppe",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 8,
+      "raw_min": "Andre redskap",
+      "raw_max": "Trål"
+    },
+    {
+      "column": "Redskap - hovedgruppe (kode)",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 4,
+      "raw_min": "1",
+      "raw_max": "4"
+    },
+    {
+      "column": "Redskap - hovedgruppe",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 4,
+      "raw_min": "Annet",
+      "raw_max": "Trål"
+    },
+    {
+      "column": "Fangstfelt (kode)",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 605,
+      "raw_min": "00000",
+      "raw_max": "82841"
+    },
+    {
+      "column": "Kyst/hav (kode)",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 2,
+      "raw_min": "0",
+      "raw_max": "8"
+    },
+    {
+      "column": "Hovedområde (kode)",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 53,
+      "raw_min": "00",
+      "raw_max": "99"
+    },
+    {
+      "column": "Hovedområde",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 53,
+      "raw_min": "Admiralityfeltet",
+      "raw_max": "Østlige Norskehav"
+    },
+    {
+      "column": "Lon (hovedområde)",
+      "missing_count": 2245,
+      "missing_percent": 0.2079,
+      "distinct_raw_values": 47,
+      "raw_min": "",
+      "raw_max": "9,9482"
+    },
+    {
+      "column": "Lat (hovedområde)",
+      "missing_count": 2245,
+      "missing_percent": 0.2079,
+      "distinct_raw_values": 50,
+      "raw_min": "",
+      "raw_max": "80,24008"
+    },
+    {
+      "column": "Lokasjon (kode)",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 85,
+      "raw_min": "00",
+      "raw_max": "99"
+    },
+    {
+      "column": "Lon (lokasjon)",
+      "missing_count": 2245,
+      "missing_percent": 0.2079,
+      "distinct_raw_values": 206,
+      "raw_min": "",
+      "raw_max": "9,83333"
+    },
+    {
+      "column": "Lat (lokasjon)",
+      "missing_count": 2245,
+      "missing_percent": 0.2079,
+      "distinct_raw_values": 183,
+      "raw_min": "",
+      "raw_max": "80,25"
+    },
+    {
+      "column": "Sone (kode)",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 14,
+      "raw_min": "FRO",
+      "raw_max": "XSV"
+    },
+    {
+      "column": "Sone",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 14,
+      "raw_min": "EU-sonen",
+      "raw_max": "Storbritannias økønomiske sone"
+    },
+    {
+      "column": "Områdegruppering (kode)",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 23,
+      "raw_min": "21_1_D",
+      "raw_max": "48_NK"
+    },
+    {
+      "column": "Områdegruppering",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 23,
+      "raw_min": "Atlanterhavet, Antarktis - ikke spesifisert",
+      "raw_max": "Atlanterhavet, nordøst/sørvest for Irland, vest - del av NEAFC reguleringsområde"
+    },
+    {
+      "column": "Hovedområde FAO (kode)",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 3,
+      "raw_min": "21",
+      "raw_max": "48"
+    },
+    {
+      "column": "Hovedområde FAO",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 3,
+      "raw_min": "Nordvestlige Atlanterhav",
+      "raw_max": "Stillehavet ved Antarktis"
+    },
+    {
+      "column": "Nord/sør for 62 grader nord",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 3,
+      "raw_min": "Annet",
+      "raw_max": "Sør for 62°N"
+    },
+    {
+      "column": "Fangstdagbok (nummer)",
+      "missing_count": 747697,
+      "missing_percent": 69.2358,
+      "distinct_raw_values": 128,
+      "raw_min": "",
+      "raw_max": "9999"
+    },
+    {
+      "column": "Fangstdagbok (turnummer)",
+      "missing_count": 740875,
+      "missing_percent": 68.604,
+      "distinct_raw_values": 126,
+      "raw_min": "",
+      "raw_max": "999"
+    },
+    {
+      "column": "Landingsdato",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 398,
+      "raw_min": "01.01.2023",
+      "raw_max": "31.12.2023"
+    },
+    {
+      "column": "Landingsklokkeslett",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 39439,
+      "raw_min": "00:00:00",
+      "raw_max": "23:59:39"
+    },
+    {
+      "column": "Landingsmåned (kode)",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 13,
+      "raw_min": "01",
+      "raw_max": "13"
+    },
+    {
+      "column": "Landingsmåned",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 13,
+      "raw_min": "April    ",
+      "raw_max": "September"
+    },
+    {
+      "column": "Landingstidspunkt",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 398,
+      "raw_min": "01.01.2023",
+      "raw_max": "31.12.2023"
+    },
+    {
+      "column": "Dellanding (signal)",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 2,
+      "raw_min": "0",
+      "raw_max": "1"
+    },
+    {
+      "column": "Neste mottaksstasjon",
+      "missing_count": 1077137,
+      "missing_percent": 99.7415,
+      "distinct_raw_values": 42,
+      "raw_min": "",
+      "raw_max": "URY"
+    },
+    {
+      "column": "Forrige mottakstasjon",
+      "missing_count": 1075921,
+      "missing_percent": 99.6289,
+      "distinct_raw_values": 46,
+      "raw_min": "",
+      "raw_max": "URY"
+    },
+    {
+      "column": "Linjenummer",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 149,
+      "raw_min": "1",
+      "raw_max": "99"
+    },
+    {
+      "column": "Art - FDIR (kode)",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 160,
+      "raw_min": "0211",
+      "raw_max": "3612"
+    },
+    {
+      "column": "Art - FDIR",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 160,
+      "raw_min": "Akkar",
+      "raw_max": "Øyepål"
+    },
+    {
+      "column": "Art (kode)",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 158,
+      "raw_min": "0101002",
+      "raw_max": "0920021"
+    },
+    {
+      "column": "Art",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 158,
+      "raw_min": "Akkar",
+      "raw_max": "Øyepål"
+    },
+    {
+      "column": "Art - gruppe (kode)",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 34,
+      "raw_min": "0101",
+      "raw_max": "0920"
+    },
+    {
+      "column": "Art - gruppe",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 34,
+      "raw_min": "Andre makroalger",
+      "raw_max": "Øyepål"
+    },
+    {
+      "column": "Art - hovedgruppe (kode)",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 6,
+      "raw_min": "01",
+      "raw_max": "09"
+    },
+    {
+      "column": "Art - hovedgruppe",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 6,
+      "raw_min": "Bruskfisk (haifisk, skater, rokker og havmus)",
+      "raw_max": "Torsk og torskeartet fisk"
+    },
+    {
+      "column": "Art FAO (kode)",
+      "missing_count": 150,
+      "missing_percent": 0.0139,
+      "distinct_raw_values": 141,
+      "raw_min": "",
+      "raw_max": "YFM"
+    },
+    {
+      "column": "Art FAO",
+      "missing_count": 150,
+      "missing_percent": 0.0139,
+      "distinct_raw_values": 141,
+      "raw_min": "",
+      "raw_max": "Øyepål"
+    },
+    {
+      "column": "Produkttilstand (kode)",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 40,
+      "raw_min": "100",
+      "raw_max": "900"
+    },
+    {
+      "column": "Produkttilstand",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 40,
+      "raw_min": "Avskjær",
+      "raw_max": "Vinger"
+    },
+    {
+      "column": "Konserveringsmåte (kode)",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 21,
+      "raw_min": "1",
+      "raw_max": "99"
+    },
+    {
+      "column": "Konserveringsmåte",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 21,
+      "raw_min": "Antioksdantbehandlet og fryst",
+      "raw_max": "Uspesifisert"
+    },
+    {
+      "column": "Landingsmåte (kode)",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 26,
+      "raw_min": "1",
+      "raw_max": "99"
+    },
+    {
+      "column": "Landingsmåte",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 26,
+      "raw_min": "1 kg emb. kartong           ",
+      "raw_max": "½ blk uemb 25 kg"
+    },
+    {
+      "column": "Kvalitet (kode)",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 12,
+      "raw_min": "10",
+      "raw_max": "99"
+    },
+    {
+      "column": "Kvalitet",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 12,
+      "raw_min": "A",
+      "raw_max": "Vrak"
+    },
+    {
+      "column": "Størrelsesgruppering (kode)",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 366,
+      "raw_min": "1000050",
+      "raw_max": "9122999"
+    },
+    {
+      "column": "Anvendelse (kode)",
+      "missing_count": 19955,
+      "missing_percent": 1.8478,
+      "distinct_raw_values": 37,
+      "raw_min": "",
+      "raw_max": "999"
+    },
+    {
+      "column": "Anvendelse",
+      "missing_count": 19955,
+      "missing_percent": 1.8478,
+      "distinct_raw_values": 37,
+      "raw_min": "",
+      "raw_max": "Utsortert fisk"
+    },
+    {
+      "column": "Anvendelse hovedgruppe (kode)",
+      "missing_count": 19955,
+      "missing_percent": 1.8478,
+      "distinct_raw_values": 4,
+      "raw_min": "",
+      "raw_max": "3"
+    },
+    {
+      "column": "Anvendelse hovedgruppe",
+      "missing_count": 19955,
+      "missing_percent": 1.8478,
+      "distinct_raw_values": 4,
+      "raw_min": "",
+      "raw_max": "Mel og olje"
+    },
+    {
+      "column": "Antall stykk",
+      "missing_count": 755471,
+      "missing_percent": 69.9556,
+      "distinct_raw_values": 3107,
+      "raw_min": "",
+      "raw_max": "9999"
+    },
+    {
+      "column": "Bruttovekt",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 46817,
+      "raw_min": "0",
+      "raw_max": "99995"
+    },
+    {
+      "column": "Produktvekt",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 44756,
+      "raw_min": "0",
+      "raw_max": "99995"
+    },
+    {
+      "column": "Produktvekt over kvote",
+      "missing_count": 1008689,
+      "missing_percent": 93.4033,
+      "distinct_raw_values": 2715,
+      "raw_min": "",
+      "raw_max": "997,7"
+    },
+    {
+      "column": "Rundvekt over kvote",
+      "missing_count": 1008689,
+      "missing_percent": 93.4033,
+      "distinct_raw_values": 3954,
+      "raw_min": "",
+      "raw_max": "996,75"
+    },
+    {
+      "column": "Rundvekt",
+      "missing_count": 1,
+      "missing_percent": 0.0001,
+      "distinct_raw_values": 67231,
+      "raw_min": "",
+      "raw_max": "99995"
+    },
+    {
+      "column": "Enhetspris for kjøper",
+      "missing_count": 26434,
+      "missing_percent": 2.4478,
+      "distinct_raw_values": 17341,
+      "raw_min": "",
+      "raw_max": "999,08"
+    },
+    {
+      "column": "Beløp for kjøper",
+      "missing_count": 26434,
+      "missing_percent": 2.4478,
+      "distinct_raw_values": 175617,
+      "raw_min": "",
+      "raw_max": "999999"
+    },
+    {
+      "column": "Enhetspris for fisker",
+      "missing_count": 26458,
+      "missing_percent": 2.45,
+      "distinct_raw_values": 17379,
+      "raw_min": "",
+      "raw_max": "999,08"
+    },
+    {
+      "column": "Beløp for fisker",
+      "missing_count": 26434,
+      "missing_percent": 2.4478,
+      "distinct_raw_values": 176168,
+      "raw_min": "",
+      "raw_max": "999999"
+    },
+    {
+      "column": "Støttebeløp",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 1,
+      "raw_min": "0",
+      "raw_max": "0"
+    },
+    {
+      "column": "Lagsavgift",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 76658,
+      "raw_min": "0",
+      "raw_max": "9999"
+    },
+    {
+      "column": "Inndradd fangstverdi",
+      "missing_count": 767484,
+      "missing_percent": 71.068,
+      "distinct_raw_values": 13903,
+      "raw_min": "",
+      "raw_max": "9998,25"
+    },
+    {
+      "column": "Etterbetaling",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 1637,
+      "raw_min": "0",
+      "raw_max": "999"
+    },
+    {
+      "column": "Fangstverdi",
+      "missing_count": 26434,
+      "missing_percent": 2.4478,
+      "distinct_raw_values": 177055,
+      "raw_min": "",
+      "raw_max": "999999"
+    },
+    {
+      "column": "Oppdateringstidspunkt",
+      "missing_count": 0,
+      "missing_percent": 0.0,
+      "distinct_raw_values": 1,
+      "raw_min": "31.12.2025",
+      "raw_max": "31.12.2025"
+    }
+  ],
+  "date_profile": [
+    {
+      "column": "Siste fangstdato",
+      "missing_count": 0,
+      "invalid_count": 0,
+      "minimum": "2022-12-06",
+      "maximum": "2023-12-31"
+    },
+    {
+      "column": "Landingsdato",
+      "missing_count": 0,
+      "invalid_count": 0,
+      "minimum": "2022-12-06",
+      "maximum": "2024-12-30"
+    },
+    {
+      "column": "Dokument salgsdato",
+      "missing_count": 0,
+      "invalid_count": 0,
+      "minimum": "2022-12-06",
+      "maximum": "2025-08-20"
+    }
+  ],
+  "weight_profile": [
+    {
+      "column": "Produktvekt",
+      "missing_count": 0,
+      "invalid_count": 0,
+      "negative_count": 0,
+      "zero_count": 68864,
+      "minimum": "0.000000",
+      "maximum": "3516887.000000"
+    },
+    {
+      "column": "Rundvekt",
+      "missing_count": 1,
+      "invalid_count": 0,
+      "negative_count": 0,
+      "zero_count": 169439,
+      "minimum": "0.000000",
+      "maximum": "14731860.000000"
+    },
+    {
+      "column": "Bruttovekt",
+      "missing_count": 0,
+      "invalid_count": 0,
+      "negative_count": 0,
+      "zero_count": 35591,
+      "minimum": "0.000000",
+      "maximum": "3516887.000000"
+    }
+  ],
+  "duplicates": {
+    "exact_duplicate_extra_rows": 0,
+    "candidate_key": [
+      "Fangstår",
+      "Salgslag (kode)",
+      "Dokumenttype (kode)",
+      "Dokumentnummer",
+      "Linjenummer"
+    ],
+    "incomplete_key_rows": 0,
+    "duplicate_key_groups": 0,
+    "duplicate_key_extra_rows": 0,
+    "maximum_key_group_size": 0,
+    "examples": []
+  },
+  "distributions": {
+    "Fangstår": [
+      {
+        "value": "2023",
+        "count": 1079929
+      }
+    ],
+    "Landingsmåned (kode)": [
+      {
+        "value": "03",
+        "count": 213496
+      },
+      {
+        "value": "04",
+        "count": 135187
+      },
+      {
+        "value": "02",
+        "count": 99009
+      },
+      {
+        "value": "08",
+        "count": 85229
+      },
+      {
+        "value": "11",
+        "count": 80177
+      },
+      {
+        "value": "01",
+        "count": 76656
+      },
+      {
+        "value": "10",
+        "count": 72653
+      },
+      {
+        "value": "05",
+        "count": 69428
+      },
+      {
+        "value": "07",
+        "count": 67295
+      },
+      {
+        "value": "06",
+        "count": 67035
+      },
+      {
+        "value": "09",
+        "count": 66929
+      },
+      {
+        "value": "12",
+        "count": 45379
+      },
+      {
+        "value": "13",
+        "count": 1456
+      }
+    ],
+    "Landingsfylke": [
+      {
+        "value": "Troms og Finnmark",
+        "count": 427794
+      },
+      {
+        "value": "Nordland",
+        "count": 306428
+      },
+      {
+        "value": "Møre og Romsdal",
+        "count": 82945
+      },
+      {
+        "value": "Trøndelag",
+        "count": 56665
+      },
+      {
+        "value": "Vestland",
+        "count": 47757
+      },
+      {
+        "value": "Agder",
+        "count": 47183
+      },
+      {
+        "value": "Vestfold og Telemark",
+        "count": 41354
+      },
+      {
+        "value": "Rogaland",
+        "count": 39072
+      },
+      {
+        "value": "",
+        "count": 17721
+      },
+      {
+        "value": "Viken",
+        "count": 11315
+      }
+    ],
+    "Landingsnasjon": [
+      {
+        "value": "NORGE",
+        "count": 1065314
+      },
+      {
+        "value": "DANMARK",
+        "count": 10164
+      },
+      {
+        "value": "SVERIGE",
+        "count": 2342
+      },
+      {
+        "value": "STORBRITANNIA",
+        "count": 1680
+      },
+      {
+        "value": "ISLAND",
+        "count": 196
+      },
+      {
+        "value": "URUGUAY",
+        "count": 150
+      },
+      {
+        "value": "FÆRØYENE",
+        "count": 60
+      },
+      {
+        "value": "IRLAND",
+        "count": 12
+      },
+      {
+        "value": "ARGENTINA",
+        "count": 11
+      }
+    ],
+    "Art": [
+      {
+        "value": "Torsk",
+        "count": 312385
+      },
+      {
+        "value": "Sei",
+        "count": 119787
+      },
+      {
+        "value": "Hyse",
+        "count": 86569
+      },
+      {
+        "value": "Lange",
+        "count": 55535
+      },
+      {
+        "value": "Kveite",
+        "count": 52990
+      },
+      {
+        "value": "Breiflabb",
+        "count": 46158
+      },
+      {
+        "value": "Brosme",
+        "count": 44058
+      },
+      {
+        "value": "Kongekrabbe, han-",
+        "count": 42360
+      },
+      {
+        "value": "Dypvannsreke",
+        "count": 36909
+      },
+      {
+        "value": "Uer (vanlig)",
+        "count": 36619
+      }
+    ],
+    "Art - gruppe": [
+      {
+        "value": "Torsk",
+        "count": 312385
+      },
+      {
+        "value": "Annen torskefisk",
+        "count": 150923
+      },
+      {
+        "value": "Annen flatfisk, bunnfisk og dypvannsfisk",
+        "count": 136268
+      },
+      {
+        "value": "Sei",
+        "count": 119787
+      },
+      {
+        "value": "Hyse",
+        "count": 86569
+      },
+      {
+        "value": "Kongekrabbe, han",
+        "count": 42360
+      },
+      {
+        "value": "Uer",
+        "count": 38979
+      },
+      {
+        "value": "Dypvannsreke",
+        "count": 36909
+      },
+      {
+        "value": "Leppefisk",
+        "count": 30489
+      },
+      {
+        "value": "Andre skalldyr, bløtdyr og pigghuder",
+        "count": 26170
+      }
+    ]
+  }
+}
