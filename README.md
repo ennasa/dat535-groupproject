@@ -8,7 +8,7 @@ A batch data pipeline built with Apache Spark (PySpark) following the Medallion 
 
 The pipeline runs in separate **dev** and **prod** environments and is tested, deployed and scheduled with GitHub Actions.
 
-> **Dataset:** Fiskeridirektoratet catch and vessel data, starting with catch year 2023.
+> **Dataset:** Fiskeridirektoratet catch and vessel data(NLOD), starting with catch year 2023.
 > See the [source exploration](notebooks/01_explore_source.ipynb).
 
 ## Repository structure

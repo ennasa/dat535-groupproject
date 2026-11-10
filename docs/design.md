@@ -44,12 +44,15 @@ Out of scope: streaming ingestion, a production-grade dashboard, managed cloud s
 
  src/main.py runs the layers in order with one run ID and stops downstream on failure.
 
- ci.yml      GitHub-hosted runner   lint + pytest on every PR
- deploy.yml  self-hosted dev/prod   main → dev, tag v* → prod
- run.yml     self-hosted prod       scheduled Bronze → Silver → Gold
+ ci.yml      GitHub-hosted runner          lint + pytest on every PR
+ deploy.yml  VM runner dev / prod           main → dev, tag v* → prod
+ run.yml     VM runner prod                scheduled Bronze → Silver → Gold
+
+ One VM (4 cores, 7.8 GB): runners dev and prod, storage ~/dat535/dev and ~/dat535/prod.
 ```
 
 All paths are relative to `storage.root` in the environment's config.
+
 
 ## 4. Components
 
@@ -273,7 +276,7 @@ A's chain is the critical path, so it starts first. B builds against the contrac
 | #4, #5, #7 | Repo structure, config, CI | B | Folders, pinned requirements, base/dev/prod/test config with loader, `ci.yml` with lint + pytest, manual-only deploy/run stubs. · Done; merged when the PR is approved. |
 | #8 | README | B | Setup, configuration, running tests and the pipeline, workflow, environments. · Another person can clone and run the tests from it. |
 | — | Contracts and stubs | both | Agree §5; add `contracts.py` and stub `run()` functions returning `LayerResult`. · `PIPELINE_ENV=dev python src/main.py` runs all three stubs. |
-| #6 | VMs and runners | B, with A | On campus: install Python 3.11, Java 17 and Spark matching `requirements.txt`; register runners labelled `dev` and `prod` as services; set paths in `dev.yaml`/`prod.yaml`. · A manual `deploy.yml` succeeds on dev. |
+| #6 | VM and runners | B, with A | Runners `dev` and `prod` installed as services on the VM; versions matched (Spark 3.5.0, Java 8, Python 3.11); storage in `~/dat535/dev` and `~/dat535/prod`. · A manual `deploy.yml` succeeds on dev and prod. |
 
 **Exit criterion:** CI green on `main`, stubs run end-to-end, definition submitted.
 
@@ -342,7 +345,7 @@ A's chain is the critical path, so it starts first. B builds against the contrac
 | Decision | Rationale |
 |---|---|
 | Separate modules and storage per layer | Each layer is tested and rerun on its own |
-| Self-managed dev and prod VMs | Course setup; prod data and runs are protected from development |
+| One self-managed VM with separate dev and prod runners, configs and storage folders | Only one VM is available; separate runners (`dev`, `prod`), configs and folders (`~/dat535/dev`, `~/dat535/prod`) keep prod data and runs apart. Trade-off: both share 4 cores and 7.8 GB RAM, so runs are serialised with a workflow concurrency group |
 | CI on GitHub-hosted runners; deploy and run on self-hosted runners | PRs are checked even when the VMs are unreachable; runners only connect outward |
 | Layered YAML config selected by `PIPELINE_ENV` | No environment values in code; differences reviewed in PRs |
 | Secrets only in GitHub Actions secrets | The repository may be shared for grading |
@@ -351,14 +354,14 @@ A's chain is the critical path, so it starts first. B builds against the contrac
 | Quality rules in config with reject / correct / flag | Rules are visible, reviewable and testable without code changes |
 | Quarantine instead of dropping | Rejected records can be counted and inspected; provides before/after evidence |
 | Stop downstream on failure; gated Gold publishing | Consumers never see Gold built from bad data |
-| Python 3.11, PySpark 3.5.3, Java 17, pinned | PySpark 3.5 doesn't support Python 3.13; laptop, CI and VMs match |
+| Python 3.11, PySpark 3.5.0, Java 8, pinned | Matches the VM (Spark 3.5.0, Java 8, Python 3.11 in `~/spark-env`); CI uses the same versions |
 | Tuning only from Spark UI evidence | The course grades evidence-based optimisation |
 | Dataset: Fiskeridirektoratet catch/vessel data, initially 2023 | Annual public archives contain landing dates, geography, species and weights; source exploration and a full-year Bronze run provide initial evidence |
 
 ## 11. Risks
 - **Source revisions and schema changes:** annual snapshots can change; retain versioned raw files, stop downstream use on drift, and update the baseline only after review.
-- **VMs only reachable on campus:** plan a campus session early; CI and development don't need the VMs.
-- **Version mismatch with the VMs:** check the VM Spark version first in #6 and update `requirements.txt`.
+- **VM only reachable on campus:** runners are installed; changes to the VM itself need campus access. CI and development don't need the VM.
+- **Shared VM resources:** dev and prod compete for 4 cores and 7.8 GB RAM. Runs are serialised; keep dev data small.
 - **A's chain is long:** B takes over performance (#24, #25) or the consumer (#31) if A falls behind.
 
 ## 12. Worth knowing

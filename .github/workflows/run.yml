@@ -13,17 +13,22 @@ on:
   # schedule:
   #   - cron: "17 3 * * *"   # daily 03:17 UTC
 
+concurrency:
+  group: pipeline-vm
+  cancel-in-progress: false
+
 jobs:
   run:
     runs-on: [self-hosted, "${{ inputs.environment || 'prod' }}"]
     env:
       PIPELINE_ENV: ${{ inputs.environment || 'prod' }}
+      PIPELINE_STORAGE_ROOT: /home/ubuntu/dat535/${{ inputs.environment || 'prod' }}
     steps:
       - uses: actions/checkout@v4
 
       - name: Install
         run: |
-          python3 -m venv .venv
+          /home/ubuntu/spark-env/bin/python -m venv .venv
           .venv/bin/pip install -r requirements.txt
 
       - name: Bronze -> Silver -> Gold
