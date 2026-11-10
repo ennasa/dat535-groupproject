@@ -1,0 +1,46 @@
+{
+  "task": "A7 enrichment and Silver orchestration proposal",
+  "validated_on": "2026-11-08",
+  "environment": {
+    "platform": "local Ubuntu WSL",
+    "spark": "3.5.3",
+    "java": "17"
+  },
+  "checks": {
+    "silver_and_cli_tests": "18 passed",
+    "full_test_suite": "50 passed",
+    "mini_pipeline": {
+      "bronze_rows": 1,
+      "silver_rows": 1,
+      "parquet_reconciliation": "passed",
+      "repeated_run": "skipped"
+    },
+    "publication_gates": {
+      "unapproved_a5_model": "blocked",
+      "missing_quality_rules": "blocked"
+    },
+    "reference_join": {
+      "matched_row": "retained and flagged true",
+      "unmatched_row": "retained and flagged false",
+      "unconfigured_reference": "flagged null",
+      "duplicate_or_null_reference_key": "rejected"
+    }
+  },
+  "derived_fields": [
+    "record_id",
+    "landing_year",
+    "landing_month",
+    "landing_year_month",
+    "is_delivered_following_year",
+    "days_catch_to_landing",
+    "is_domestic_landing",
+    "has_fao_mapping"
+  ],
+  "not_completed": [
+    "joint A5 approval",
+    "B4/B5 quality rules and policy",
+    "B6 quarantine writer",
+    "approved external reference datasets",
+    "full dev Silver publication"
+  ]
+}

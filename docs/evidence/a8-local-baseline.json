@@ -1,0 +1,234 @@
+{
+  "application_duration_seconds": 271.816,
+  "jobs": 16,
+  "stages": 15,
+  "tasks": 83,
+  "totals": {
+    "executor_run_ms": 667959,
+    "executor_cpu_ns": 551417130200,
+    "gc_ms": 46899,
+    "input_bytes": 958070342,
+    "output_bytes": 133267098,
+    "shuffle_read_bytes": 451593377,
+    "shuffle_write_bytes": 451593377,
+    "memory_spill_bytes": 2642391360,
+    "disk_spill_bytes": 648469883
+  },
+  "highest_shuffle_write_stages": [
+    {
+      "stage_id": 4,
+      "name": "count at <unknown>:0",
+      "tasks": 12,
+      "task_duration_ms": {
+        "median": 993.0,
+        "maximum": 160795,
+        "max_to_median_ratio": 161.928
+      },
+      "executor_run_ms": 161520,
+      "executor_cpu_ns": 157932539500,
+      "gc_ms": 2101,
+      "input_bytes": 40718796,
+      "output_bytes": 0,
+      "shuffle_read_bytes": 0,
+      "shuffle_write_bytes": 451591062,
+      "memory_spill_bytes": 1333778496,
+      "disk_spill_bytes": 280362785
+    },
+    {
+      "stage_id": 24,
+      "name": "count at <unknown>:0",
+      "tasks": 12,
+      "task_duration_ms": {
+        "median": 168.5,
+        "maximum": 235,
+        "max_to_median_ratio": 1.395
+      },
+      "executor_run_ms": 1930,
+      "executor_cpu_ns": 351470900,
+      "gc_ms": 108,
+      "input_bytes": 456816,
+      "output_bytes": 0,
+      "shuffle_read_bytes": 0,
+      "shuffle_write_bytes": 696,
+      "memory_spill_bytes": 0,
+      "disk_spill_bytes": 0
+    },
+    {
+      "stage_id": 1,
+      "name": "count at <unknown>:0",
+      "tasks": 12,
+      "task_duration_ms": {
+        "median": 746.5,
+        "maximum": 775,
+        "max_to_median_ratio": 1.038
+      },
+      "executor_run_ms": 6963,
+      "executor_cpu_ns": 1630378400,
+      "gc_ms": 132,
+      "input_bytes": 480336,
+      "output_bytes": 0,
+      "shuffle_read_bytes": 0,
+      "shuffle_write_bytes": 675,
+      "memory_spill_bytes": 0,
+      "disk_spill_bytes": 0
+    },
+    {
+      "stage_id": 8,
+      "name": "count at <unknown>:0",
+      "tasks": 8,
+      "task_duration_ms": {
+        "median": 178.5,
+        "maximum": 179,
+        "max_to_median_ratio": 1.003
+      },
+      "executor_run_ms": 1108,
+      "executor_cpu_ns": 923303100,
+      "gc_ms": 0,
+      "input_bytes": 166263645,
+      "output_bytes": 0,
+      "shuffle_read_bytes": 0,
+      "shuffle_write_bytes": 472,
+      "memory_spill_bytes": 0,
+      "disk_spill_bytes": 0
+    },
+    {
+      "stage_id": 17,
+      "name": "count at <unknown>:0",
+      "tasks": 8,
+      "task_duration_ms": {
+        "median": 104.0,
+        "maximum": 106,
+        "max_to_median_ratio": 1.019
+      },
+      "executor_run_ms": 657,
+      "executor_cpu_ns": 709607500,
+      "gc_ms": 0,
+      "input_bytes": 291943552,
+      "output_bytes": 0,
+      "shuffle_read_bytes": 0,
+      "shuffle_write_bytes": 472,
+      "memory_spill_bytes": 0,
+      "disk_spill_bytes": 0
+    }
+  ],
+  "highest_skew_ratio_stages": [
+    {
+      "stage_id": 4,
+      "name": "count at <unknown>:0",
+      "tasks": 12,
+      "task_duration_ms": {
+        "median": 993.0,
+        "maximum": 160795,
+        "max_to_median_ratio": 161.928
+      },
+      "executor_run_ms": 161520,
+      "executor_cpu_ns": 157932539500,
+      "gc_ms": 2101,
+      "input_bytes": 40718796,
+      "output_bytes": 0,
+      "shuffle_read_bytes": 0,
+      "shuffle_write_bytes": 451591062,
+      "memory_spill_bytes": 1333778496,
+      "disk_spill_bytes": 280362785
+    },
+    {
+      "stage_id": 24,
+      "name": "count at <unknown>:0",
+      "tasks": 12,
+      "task_duration_ms": {
+        "median": 168.5,
+        "maximum": 235,
+        "max_to_median_ratio": 1.395
+      },
+      "executor_run_ms": 1930,
+      "executor_cpu_ns": 351470900,
+      "gc_ms": 108,
+      "input_bytes": 456816,
+      "output_bytes": 0,
+      "shuffle_read_bytes": 0,
+      "shuffle_write_bytes": 696,
+      "memory_spill_bytes": 0,
+      "disk_spill_bytes": 0
+    },
+    {
+      "stage_id": 1,
+      "name": "count at <unknown>:0",
+      "tasks": 12,
+      "task_duration_ms": {
+        "median": 746.5,
+        "maximum": 775,
+        "max_to_median_ratio": 1.038
+      },
+      "executor_run_ms": 6963,
+      "executor_cpu_ns": 1630378400,
+      "gc_ms": 132,
+      "input_bytes": 480336,
+      "output_bytes": 0,
+      "shuffle_read_bytes": 0,
+      "shuffle_write_bytes": 675,
+      "memory_spill_bytes": 0,
+      "disk_spill_bytes": 0
+    },
+    {
+      "stage_id": 6,
+      "name": "count at <unknown>:0",
+      "tasks": 8,
+      "task_duration_ms": {
+        "median": 17429.0,
+        "maximum": 17970,
+        "max_to_median_ratio": 1.031
+      },
+      "executor_run_ms": 140094,
+      "executor_cpu_ns": 122788182000,
+      "gc_ms": 14874,
+      "input_bytes": 0,
+      "output_bytes": 0,
+      "shuffle_read_bytes": 451591062,
+      "shuffle_write_bytes": 0,
+      "memory_spill_bytes": 1308612864,
+      "disk_spill_bytes": 368107098
+    },
+    {
+      "stage_id": 17,
+      "name": "count at <unknown>:0",
+      "tasks": 8,
+      "task_duration_ms": {
+        "median": 104.0,
+        "maximum": 106,
+        "max_to_median_ratio": 1.019
+      },
+      "executor_run_ms": 657,
+      "executor_cpu_ns": 709607500,
+      "gc_ms": 0,
+      "input_bytes": 291943552,
+      "output_bytes": 0,
+      "shuffle_read_bytes": 0,
+      "shuffle_write_bytes": 472,
+      "memory_spill_bytes": 0,
+      "disk_spill_bytes": 0
+    }
+  ],
+  "run": {
+    "label": "baseline-local",
+    "started_at_utc": "2026-11-08T20:51:24.233453+00:00",
+    "finished_at_utc": "2026-11-08T20:56:39.043642+00:00",
+    "wall_duration_seconds": 299.392,
+    "spark": {
+      "master": "local[*]",
+      "shuffle_partitions": "8",
+      "event_log": "data/performance/baseline-local/spark-events"
+    },
+    "result": {
+      "layer": "silver",
+      "status": "success",
+      "rows_in": 1079929,
+      "rows_out": 1079929,
+      "rows_rejected": 0,
+      "outputs": [
+        "/mnt/c/Users/moon/Desktop/Group/dat535-groupproject/data/performance/baseline-local/silver/catch_document_line/period=2023/source_version=71783c32df9bdf3af86c0fa3ae4b56523d7dea4836349189490d2dcbf99a0592/model_version=a5-proposal-1"
+      ],
+      "rules": [],
+      "message": "2023: 1079929 Bronze -> 1079929 clean -> 1079929 Silver (unvalidated-development)"
+    }
+  }
+}

@@ -8,7 +8,8 @@ A batch data pipeline built with Apache Spark (PySpark) following the Medallion 
 
 The pipeline runs in separate **dev** and **prod** environments and is tested, deployed and scheduled with GitHub Actions.
 
-> **Dataset:** Norwegian catch and landing data from Fiskeridirektoratet (NLOD)
+> **Dataset:** Fiskeridirektoratet catch and vessel data(NLOD), starting with catch year 2023.
+> See the [source exploration](notebooks/01_explore_source.ipynb).
 
 ## Repository structure
 
@@ -62,6 +63,16 @@ PIPELINE_ENV=dev python src/main.py --layers bronze    # one layer
 ```
 
 Each run gets a run ID (a random UUID locally, the GitHub Actions run ID in workflows). Pass your own with `--run-id`.
+
+**Implementation status:** Bronze ingestion; the proposed Silver model, cleaning,
+enrichment and orchestration; and Gold candidate construction are implemented. Silver
+publication remains gated until the joint model approval and quality/quarantine
+components are available. Gold similarly remains a candidate until validation and
+publication are connected. Use `--layers bronze` for a currently complete standalone layer.
+Original ZIP/CSV files, versioned Parquet and run manifests are stored under `data/dev`.
+See [Bronze ingestion](docs/bronze-ingestion.md) and
+[Silver enrichment](docs/silver-enrichment.md) for details. The isolated local Gold
+preview and consumer are documented in [Gold model](docs/gold-model.md).
 
 ## Configuration
 

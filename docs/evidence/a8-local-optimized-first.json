@@ -1,0 +1,234 @@
+{
+  "application_duration_seconds": 422.708,
+  "jobs": 18,
+  "stages": 17,
+  "tasks": 112,
+  "totals": {
+    "executor_run_ms": 389594,
+    "executor_cpu_ns": 344009522900,
+    "gc_ms": 4129,
+    "input_bytes": 718055682,
+    "output_bytes": 115409026,
+    "shuffle_read_bytes": 12319726,
+    "shuffle_write_bytes": 12319726,
+    "memory_spill_bytes": 0,
+    "disk_spill_bytes": 0
+  },
+  "highest_shuffle_write_stages": [
+    {
+      "stage_id": 4,
+      "name": "count at <unknown>:0",
+      "tasks": 12,
+      "task_duration_ms": {
+        "median": 558.5,
+        "maximum": 5520,
+        "max_to_median_ratio": 9.884
+      },
+      "executor_run_ms": 10900,
+      "executor_cpu_ns": 5923061100,
+      "gc_ms": 108,
+      "input_bytes": 4645968,
+      "output_bytes": 0,
+      "shuffle_read_bytes": 0,
+      "shuffle_write_bytes": 12317026,
+      "memory_spill_bytes": 0,
+      "disk_spill_bytes": 0
+    },
+    {
+      "stage_id": 1,
+      "name": "count at <unknown>:0",
+      "tasks": 12,
+      "task_duration_ms": {
+        "median": 752.5,
+        "maximum": 777,
+        "max_to_median_ratio": 1.033
+      },
+      "executor_run_ms": 7142,
+      "executor_cpu_ns": 1494837800,
+      "gc_ms": 228,
+      "input_bytes": 480336,
+      "output_bytes": 0,
+      "shuffle_read_bytes": 0,
+      "shuffle_write_bytes": 675,
+      "memory_spill_bytes": 0,
+      "disk_spill_bytes": 0
+    },
+    {
+      "stage_id": 11,
+      "name": "count at <unknown>:0",
+      "tasks": 12,
+      "task_duration_ms": {
+        "median": 164.5,
+        "maximum": 198,
+        "max_to_median_ratio": 1.204
+      },
+      "executor_run_ms": 1337,
+      "executor_cpu_ns": 207965900,
+      "gc_ms": 54,
+      "input_bytes": 118614352,
+      "output_bytes": 0,
+      "shuffle_read_bytes": 0,
+      "shuffle_write_bytes": 675,
+      "memory_spill_bytes": 0,
+      "disk_spill_bytes": 0
+    },
+    {
+      "stage_id": 17,
+      "name": "count at <unknown>:0",
+      "tasks": 12,
+      "task_duration_ms": {
+        "median": 31.5,
+        "maximum": 59,
+        "max_to_median_ratio": 1.873
+      },
+      "executor_run_ms": 102,
+      "executor_cpu_ns": 99388200,
+      "gc_ms": 0,
+      "input_bytes": 217314792,
+      "output_bytes": 0,
+      "shuffle_read_bytes": 0,
+      "shuffle_write_bytes": 675,
+      "memory_spill_bytes": 0,
+      "disk_spill_bytes": 0
+    },
+    {
+      "stage_id": 22,
+      "name": "count at <unknown>:0",
+      "tasks": 12,
+      "task_duration_ms": {
+        "median": 130.0,
+        "maximum": 376,
+        "max_to_median_ratio": 2.892
+      },
+      "executor_run_ms": 1551,
+      "executor_cpu_ns": 358988500,
+      "gc_ms": 0,
+      "input_bytes": 352294,
+      "output_bytes": 0,
+      "shuffle_read_bytes": 0,
+      "shuffle_write_bytes": 675,
+      "memory_spill_bytes": 0,
+      "disk_spill_bytes": 0
+    }
+  ],
+  "highest_skew_ratio_stages": [
+    {
+      "stage_id": 16,
+      "name": "count at <unknown>:0",
+      "tasks": 12,
+      "task_duration_ms": {
+        "median": 233.5,
+        "maximum": 84207,
+        "max_to_median_ratio": 360.63
+      },
+      "executor_run_ms": 80564,
+      "executor_cpu_ns": 82551677900,
+      "gc_ms": 812,
+      "input_bytes": 118614352,
+      "output_bytes": 0,
+      "shuffle_read_bytes": 0,
+      "shuffle_write_bytes": 0,
+      "memory_spill_bytes": 0,
+      "disk_spill_bytes": 0
+    },
+    {
+      "stage_id": 20,
+      "name": "parquet at <unknown>:0",
+      "tasks": 12,
+      "task_duration_ms": {
+        "median": 271.0,
+        "maximum": 88444,
+        "max_to_median_ratio": 326.362
+      },
+      "executor_run_ms": 86790,
+      "executor_cpu_ns": 53395880000,
+      "gc_ms": 485,
+      "input_bytes": 217314792,
+      "output_bytes": 115409026,
+      "shuffle_read_bytes": 0,
+      "shuffle_write_bytes": 0,
+      "memory_spill_bytes": 0,
+      "disk_spill_bytes": 0
+    },
+    {
+      "stage_id": 10,
+      "name": "count at <unknown>:0",
+      "tasks": 12,
+      "task_duration_ms": {
+        "median": 2141.0,
+        "maximum": 198828,
+        "max_to_median_ratio": 92.867
+      },
+      "executor_run_ms": 193267,
+      "executor_cpu_ns": 195052694100,
+      "gc_ms": 2396,
+      "input_bytes": 40718796,
+      "output_bytes": 0,
+      "shuffle_read_bytes": 0,
+      "shuffle_write_bytes": 0,
+      "memory_spill_bytes": 0,
+      "disk_spill_bytes": 0
+    },
+    {
+      "stage_id": 4,
+      "name": "count at <unknown>:0",
+      "tasks": 12,
+      "task_duration_ms": {
+        "median": 558.5,
+        "maximum": 5520,
+        "max_to_median_ratio": 9.884
+      },
+      "executor_run_ms": 10900,
+      "executor_cpu_ns": 5923061100,
+      "gc_ms": 108,
+      "input_bytes": 4645968,
+      "output_bytes": 0,
+      "shuffle_read_bytes": 0,
+      "shuffle_write_bytes": 12317026,
+      "memory_spill_bytes": 0,
+      "disk_spill_bytes": 0
+    },
+    {
+      "stage_id": 22,
+      "name": "count at <unknown>:0",
+      "tasks": 12,
+      "task_duration_ms": {
+        "median": 130.0,
+        "maximum": 376,
+        "max_to_median_ratio": 2.892
+      },
+      "executor_run_ms": 1551,
+      "executor_cpu_ns": 358988500,
+      "gc_ms": 0,
+      "input_bytes": 352294,
+      "output_bytes": 0,
+      "shuffle_read_bytes": 0,
+      "shuffle_write_bytes": 675,
+      "memory_spill_bytes": 0,
+      "disk_spill_bytes": 0
+    }
+  ],
+  "run": {
+    "label": "optimized-local",
+    "started_at_utc": "2026-11-08T21:03:10.005099+00:00",
+    "finished_at_utc": "2026-11-08T21:10:56.554459+00:00",
+    "wall_duration_seconds": 441.147,
+    "spark": {
+      "master": "local[*]",
+      "shuffle_partitions": "8",
+      "event_log": "data/performance/optimized-local/spark-events"
+    },
+    "result": {
+      "layer": "silver",
+      "status": "success",
+      "rows_in": 1079929,
+      "rows_out": 1079929,
+      "rows_rejected": 0,
+      "outputs": [
+        "/mnt/c/Users/moon/Desktop/Group/dat535-groupproject/data/performance/optimized-local/silver/catch_document_line/period=2023/source_version=71783c32df9bdf3af86c0fa3ae4b56523d7dea4836349189490d2dcbf99a0592/model_version=a5-proposal-1"
+      ],
+      "rules": [],
+      "message": "2023: 1079929 Bronze -> 1079929 clean -> 1079929 Silver (unvalidated-development)"
+    }
+  }
+}

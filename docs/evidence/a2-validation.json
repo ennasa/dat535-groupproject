@@ -1,0 +1,42 @@
+{
+  "validated_at": "2026-11-05T21:05:56.551379+00:00",
+  "environment": {
+    "platform": "Ubuntu WSL",
+    "python": "3.12.3",
+    "java_major": 17,
+    "pyspark": "3.5.3"
+  },
+  "checks": {
+    "ruff": "passed",
+    "pytest_passed": 29
+  },
+  "first_run": {
+    "status": "success",
+    "rows_in": 1079929,
+    "rows_out": 1079929,
+    "rows_rejected": 0
+  },
+  "rerun": {
+    "status": "skipped",
+    "rows_in": 0,
+    "rows_out": 0
+  },
+  "source": {
+    "url": "https://register.fiskeridir.no/uttrekk/fangstdata_2023.csv.zip",
+    "period": "2023",
+    "fetched_at": "2026-11-05T20:59:19.931288+00:00",
+    "sha256": "71783c32df9bdf3af86c0fa3ae4b56523d7dea4836349189490d2dcbf99a0592",
+    "bytes": 54943248,
+    "csv_sha256": "e359759f9a190dd71ad77a3e004e83cc66d2339b914b6a32ad64f43c4596b4bc",
+    "csv_bytes": 1209038213
+  },
+  "source_columns": 133,
+  "published_snapshots": 1,
+  "original_ingestion_run_id_after_rerun": "a2-2023-first",
+  "stored_file_hashes_verified": true,
+  "parquet_success_marker_present": true,
+  "manifests": [
+    "data/dev/manifests/a2-2023-first.json",
+    "data/dev/manifests/a2-2023-rerun.json"
+  ]
+}

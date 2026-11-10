@@ -1,0 +1,234 @@
+{
+  "application_duration_seconds": 182.358,
+  "jobs": 19,
+  "stages": 18,
+  "tasks": 104,
+  "totals": {
+    "executor_run_ms": 460844,
+    "executor_cpu_ns": 365364853700,
+    "gc_ms": 28499,
+    "input_bytes": 849503572,
+    "output_bytes": 130133810,
+    "shuffle_read_bytes": 299143757,
+    "shuffle_write_bytes": 299143757,
+    "memory_spill_bytes": 0,
+    "disk_spill_bytes": 0
+  },
+  "highest_shuffle_write_stages": [
+    {
+      "stage_id": 10,
+      "name": "count at <unknown>:0",
+      "tasks": 12,
+      "task_duration_ms": {
+        "median": 496.0,
+        "maximum": 103991,
+        "max_to_median_ratio": 209.659
+      },
+      "executor_run_ms": 105339,
+      "executor_cpu_ns": 101547229600,
+      "gc_ms": 1262,
+      "input_bytes": 40718796,
+      "output_bytes": 0,
+      "shuffle_read_bytes": 0,
+      "shuffle_write_bytes": 286824416,
+      "memory_spill_bytes": 0,
+      "disk_spill_bytes": 0
+    },
+    {
+      "stage_id": 4,
+      "name": "count at <unknown>:0",
+      "tasks": 12,
+      "task_duration_ms": {
+        "median": 565.5,
+        "maximum": 4063,
+        "max_to_median_ratio": 7.185
+      },
+      "executor_run_ms": 9936,
+      "executor_cpu_ns": 4700066200,
+      "gc_ms": 304,
+      "input_bytes": 4645968,
+      "output_bytes": 0,
+      "shuffle_read_bytes": 0,
+      "shuffle_write_bytes": 12317026,
+      "memory_spill_bytes": 0,
+      "disk_spill_bytes": 0
+    },
+    {
+      "stage_id": 30,
+      "name": "count at <unknown>:0",
+      "tasks": 12,
+      "task_duration_ms": {
+        "median": 159.0,
+        "maximum": 280,
+        "max_to_median_ratio": 1.761
+      },
+      "executor_run_ms": 1714,
+      "executor_cpu_ns": 320904900,
+      "gc_ms": 0,
+      "input_bytes": 456408,
+      "output_bytes": 0,
+      "shuffle_read_bytes": 0,
+      "shuffle_write_bytes": 696,
+      "memory_spill_bytes": 0,
+      "disk_spill_bytes": 0
+    },
+    {
+      "stage_id": 1,
+      "name": "count at <unknown>:0",
+      "tasks": 12,
+      "task_duration_ms": {
+        "median": 644.5,
+        "maximum": 724,
+        "max_to_median_ratio": 1.123
+      },
+      "executor_run_ms": 6731,
+      "executor_cpu_ns": 1553682700,
+      "gc_ms": 120,
+      "input_bytes": 480336,
+      "output_bytes": 0,
+      "shuffle_read_bytes": 0,
+      "shuffle_write_bytes": 675,
+      "memory_spill_bytes": 0,
+      "disk_spill_bytes": 0
+    },
+    {
+      "stage_id": 14,
+      "name": "count at <unknown>:0",
+      "tasks": 8,
+      "task_duration_ms": {
+        "median": 229.0,
+        "maximum": 232,
+        "max_to_median_ratio": 1.013
+      },
+      "executor_run_ms": 1645,
+      "executor_cpu_ns": 881439300,
+      "gc_ms": 0,
+      "input_bytes": 151078376,
+      "output_bytes": 0,
+      "shuffle_read_bytes": 0,
+      "shuffle_write_bytes": 472,
+      "memory_spill_bytes": 0,
+      "disk_spill_bytes": 0
+    }
+  ],
+  "highest_skew_ratio_stages": [
+    {
+      "stage_id": 10,
+      "name": "count at <unknown>:0",
+      "tasks": 12,
+      "task_duration_ms": {
+        "median": 496.0,
+        "maximum": 103991,
+        "max_to_median_ratio": 209.659
+      },
+      "executor_run_ms": 105339,
+      "executor_cpu_ns": 101547229600,
+      "gc_ms": 1262,
+      "input_bytes": 40718796,
+      "output_bytes": 0,
+      "shuffle_read_bytes": 0,
+      "shuffle_write_bytes": 286824416,
+      "memory_spill_bytes": 0,
+      "disk_spill_bytes": 0
+    },
+    {
+      "stage_id": 4,
+      "name": "count at <unknown>:0",
+      "tasks": 12,
+      "task_duration_ms": {
+        "median": 565.5,
+        "maximum": 4063,
+        "max_to_median_ratio": 7.185
+      },
+      "executor_run_ms": 9936,
+      "executor_cpu_ns": 4700066200,
+      "gc_ms": 304,
+      "input_bytes": 4645968,
+      "output_bytes": 0,
+      "shuffle_read_bytes": 0,
+      "shuffle_write_bytes": 12317026,
+      "memory_spill_bytes": 0,
+      "disk_spill_bytes": 0
+    },
+    {
+      "stage_id": 30,
+      "name": "count at <unknown>:0",
+      "tasks": 12,
+      "task_duration_ms": {
+        "median": 159.0,
+        "maximum": 280,
+        "max_to_median_ratio": 1.761
+      },
+      "executor_run_ms": 1714,
+      "executor_cpu_ns": 320904900,
+      "gc_ms": 0,
+      "input_bytes": 456408,
+      "output_bytes": 0,
+      "shuffle_read_bytes": 0,
+      "shuffle_write_bytes": 696,
+      "memory_spill_bytes": 0,
+      "disk_spill_bytes": 0
+    },
+    {
+      "stage_id": 1,
+      "name": "count at <unknown>:0",
+      "tasks": 12,
+      "task_duration_ms": {
+        "median": 644.5,
+        "maximum": 724,
+        "max_to_median_ratio": 1.123
+      },
+      "executor_run_ms": 6731,
+      "executor_cpu_ns": 1553682700,
+      "gc_ms": 120,
+      "input_bytes": 480336,
+      "output_bytes": 0,
+      "shuffle_read_bytes": 0,
+      "shuffle_write_bytes": 675,
+      "memory_spill_bytes": 0,
+      "disk_spill_bytes": 0
+    },
+    {
+      "stage_id": 23,
+      "name": "count at <unknown>:0",
+      "tasks": 8,
+      "task_duration_ms": {
+        "median": 50.5,
+        "maximum": 56,
+        "max_to_median_ratio": 1.109
+      },
+      "executor_run_ms": 192,
+      "executor_cpu_ns": 158875900,
+      "gc_ms": 0,
+      "input_bytes": 250522656,
+      "output_bytes": 0,
+      "shuffle_read_bytes": 0,
+      "shuffle_write_bytes": 472,
+      "memory_spill_bytes": 0,
+      "disk_spill_bytes": 0
+    }
+  ],
+  "run": {
+    "label": "optimized-balanced-local",
+    "started_at_utc": "2026-11-08T21:26:01.847833+00:00",
+    "finished_at_utc": "2026-11-08T21:29:25.865733+00:00",
+    "wall_duration_seconds": 197.808,
+    "spark": {
+      "master": "local[*]",
+      "shuffle_partitions": "8",
+      "event_log": "data/performance/optimized-balanced-local/spark-events"
+    },
+    "result": {
+      "layer": "silver",
+      "status": "success",
+      "rows_in": 1079929,
+      "rows_out": 1079929,
+      "rows_rejected": 0,
+      "outputs": [
+        "/mnt/c/Users/moon/Desktop/Group/dat535-groupproject/data/performance/optimized-balanced-local/silver/catch_document_line/period=2023/source_version=71783c32df9bdf3af86c0fa3ae4b56523d7dea4836349189490d2dcbf99a0592/model_version=a5-proposal-1"
+      ],
+      "rules": [],
+      "message": "2023: 1079929 Bronze -> 1079929 clean -> 1079929 Silver (unvalidated-development)"
+    }
+  }
+}

@@ -17,6 +17,7 @@ spark-warehouse/
 metastore_db/
 derby.log
 /data/
+/fangstdata_*.csv
 *.parquet
 !tests/data/**
 
