@@ -8,7 +8,7 @@ A batch data pipeline built with Apache Spark (PySpark) following the Medallion 
 
 The pipeline runs in separate **dev** and **prod** environments and is tested, deployed and scheduled with GitHub Actions.
 
-> **Dataset:** _TBD – see [docs/project-definition.md](docs/project-definition.md)_
+> **Dataset:** Norwegian catch and landing data from Fiskeridirektoratet (NLOD)
 
 ## Repository structure
 

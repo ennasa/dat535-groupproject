@@ -19,12 +19,13 @@ jobs:
     runs-on: [self-hosted, "${{ inputs.environment }}"]
     env:
       PIPELINE_ENV: ${{ inputs.environment }}
+      PIPELINE_STORAGE_ROOT: /home/ubuntu/dat535/${{ inputs.environment }}
     steps:
       - uses: actions/checkout@v4
 
       - name: Install into virtualenv on the VM
         run: |
-          python3 -m venv .venv
+          /home/ubuntu/spark-env/bin/python -m venv .venv
           .venv/bin/pip install -r requirements.txt
 
       - name: Smoke check

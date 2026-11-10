@@ -47,3 +47,8 @@ def test_no_secrets_in_config():
     for path in pathlib.Path("config").glob("*.yaml"):
         for line in path.read_text().splitlines():
             assert not secret_key.match(line), f"{path}: '{line.strip()}' looks like a secret"
+
+
+def test_storage_root_can_be_overridden(monkeypatch):
+    monkeypatch.setenv("PIPELINE_STORAGE_ROOT", "/tmp/custom")
+    assert load_config("dev")["storage"]["root"] == "/tmp/custom"
