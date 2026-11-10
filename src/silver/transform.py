@@ -6,6 +6,7 @@ import json
 import logging
 import re
 from collections.abc import Callable, Mapping
+from functools import partial
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
@@ -17,6 +18,7 @@ from common.contracts import LayerResult, RuleResult, RunContext
 from silver.clean import clean
 from silver.enrich import DERIVED_COLUMNS, enrich
 from silver.model import APPROVAL_STATUS, MODEL_VERSION
+from silver.quarantine import write_rejected
 
 log = logging.getLogger(__name__)
 
@@ -154,11 +156,8 @@ def run(
             result.rules.extend(rule_results)
 
             if rows_rejected:
-                if rejected_writer is None:
-                    raise RuntimeError(
-                        f"{rows_rejected} rows were rejected but no quarantine writer is available"
-                    )
-                result.outputs.extend(rejected_writer(rejected, period, ctx) or [])
+                writer = rejected_writer or partial(write_rejected, table=TABLE_NAME)
+                result.outputs.extend(writer(rejected, period, ctx) or [])
 
             reject_ratio = rows_rejected / rows_cleaned if rows_cleaned else 0.0
             if reject_ratio > ctx.config["quality"]["max_reject_ratio"]:
