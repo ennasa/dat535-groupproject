@@ -21,7 +21,7 @@ def _runner(layer: str):
     elif layer == "silver":
         from silver.transform import run
     else:
-        from gold.build import run
+        from gold.publish import run
     return run
 
 
