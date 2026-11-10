@@ -11,6 +11,7 @@ storage:
   gold: gold
   quarantine: quarantine
   manifests: manifests
+  reports: reports
 
 source:
   name: fiskeridir_catch
@@ -29,6 +30,18 @@ spark:
 quality:
   max_reject_ratio: 0.05  # fail the run if more than 5% of records are rejected
   allow_unvalidated_silver: false
+  # Columns shown in the before/after quality report (#22)
+  report_columns:
+    - document_number
+    - line_number
+    - landing_date
+    - landing_county_code
+    - species_code
+    - species_fao_code
+    - round_weight_kg
+    - product_weight_kg
+    - catch_value_nok
+  # Silver quality rules (#18).
   # Silver quality rules (#18). Numbers in comments are from profiling 2023 (A4).
   # reject = goes to quarantine, flag = kept but marked in _quality_flags
   rules:
