@@ -60,3 +60,23 @@ def write_manifest(ctx: RunContext, files: list[dict], result: LayerResult) -> P
         },
     )
     return path
+
+
+def record_run_layers(ctx: RunContext, results: list[LayerResult]) -> Path:
+    """Store every layer's result in this run's manifest.
+
+    Bronze writes the manifest first (with the files it saw). This adds Silver and Gold,
+    keeping Bronze's file list, so one file describes the whole run.
+    """
+    path = Path(layer_path(ctx.config, "manifests")) / f"{ctx.run_id}.json"
+    data = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {
+        "run_id": ctx.run_id,
+        "env": ctx.env,
+        "started_at": ctx.started_at.isoformat(),
+        "files": [],
+    }
+    data["force"] = ctx.force
+    data["layers"] = [asdict(result) for result in results]
+    data["status"] = "failed" if any(r.status == "failed" for r in results) else "success"
+    write_json(path, data)
+    return path

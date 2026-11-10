@@ -223,3 +223,26 @@ def test_write_failure_can_be_retried(spark, setup_source, monkeypatch):
         patch.setattr(ingest.metadata, "add_metadata", fail)
         assert ingest.run(spark, context("failed")).status == "failed"
     assert ingest.run(spark, context("retry")).status == "success"
+
+
+
+def test_force_replaces_existing_snapshot(spark, setup_source):
+    cfg, make_archive, context = setup_source
+    make_archive()
+    first = ingest.run(spark, context("first"))
+    assert first.status == "success", first.message
+
+    forced_ctx = RunContext(
+        "forced", "test", datetime(2026, 11, 6, tzinfo=timezone.utc), cfg, force=True
+    )
+    forced = ingest.run(spark, forced_ctx)
+
+    assert forced.status == "success", forced.message
+    assert forced.rows_out == 2
+    snapshot_dir = Path(forced.outputs[0])
+    snapshot = json.loads((snapshot_dir / "_snapshot.json").read_text("utf-8"))
+    assert snapshot["ingestion_run_id"] == "forced"
+    assert spark.read.parquet((snapshot_dir / "records").as_posix()).count() == 2
+    # Still exactly one version for the year, and no leftover copy of the old one.
+    versions = list(snapshot_dir.parent.iterdir())
+    assert versions == [snapshot_dir]

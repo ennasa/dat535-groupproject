@@ -14,6 +14,7 @@ class RunContext:
     env: Literal["dev", "prod", "test"]
     started_at: datetime
     config: dict[str, Any]
+    force: bool = False  # re-ingest snapshots even if the same file was ingested before
 
     def __post_init__(self) -> None:
         if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_.-]*", self.run_id):
