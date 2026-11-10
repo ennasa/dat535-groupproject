@@ -1,7 +1,6 @@
 name: Run pipeline
 
-# Manual only until the self-hosted runners exist (#6).
-# Uncomment the schedule when the prod runner is registered (#33).
+# Runs every night on prod (03:17 UTC), or manually on dev/prod from the Actions tab.
 on:
   workflow_dispatch:
     inputs:
@@ -10,8 +9,8 @@ on:
         type: choice
         options: [dev, prod]
         default: dev
-  # schedule:
-  #   - cron: "17 3 * * *"   # daily 03:17 UTC
+  schedule:
+    - cron: "17 3 * * *"   # daily 03:17 UTC
 
 concurrency:
   group: pipeline-vm
