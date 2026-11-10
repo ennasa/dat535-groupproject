@@ -1,5 +1,5 @@
 # Keep pyspark on the same version as Spark on the dev/prod VMs.
-pyspark==3.5.3
+pyspark==3.5.0
 PyYAML==6.0.2
 
 # Development and CI

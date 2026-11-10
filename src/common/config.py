@@ -44,6 +44,8 @@ def load_config(env: str | None = None, config_dir: Path = CONFIG_DIR) -> dict[s
 
     base = _read_yaml(config_dir / "base.yaml")
     config = deep_merge(base, _read_yaml(config_dir / f"{env}.yaml"))
+    if root := os.environ.get("PIPELINE_STORAGE_ROOT"):
+        config["storage"]["root"] = root
     config["env"] = env
     return config
 
