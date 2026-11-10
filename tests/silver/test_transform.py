@@ -14,6 +14,9 @@ def context(tmp_path, *, provisional=True, unvalidated=True):
     config["source"]["periods"] = ["2023"]
     config["silver"]["allow_provisional_model"] = provisional
     config["quality"]["allow_unvalidated_silver"] = unvalidated
+    # These tests use a small made-up table, so the real rules from base.yaml don't fit.
+    # The real rules are checked in test_quality_config.py.
+    config["quality"]["rules"] = {}
     return RunContext("a7-test", "test", datetime.now(timezone.utc), config)
 
 
