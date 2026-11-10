@@ -89,7 +89,9 @@ def test_transform_writes_reconciled_versioned_snapshot(spark, tmp_path, monkeyp
     assert second.rows_out == 0
 
 
-def test_transform_blocks_unapproved_model(spark, tmp_path):
+def test_transform_blocks_unapproved_model(spark, tmp_path, monkeypatch):
+    # The model is approved now; pretend it isn't, to check that the safety gate still works.
+    monkeypatch.setattr(transform, "APPROVAL_STATUS", "awaiting-person-b-review")
     result = transform.run(spark, context(tmp_path, provisional=False))
 
     assert result.status == "failed"

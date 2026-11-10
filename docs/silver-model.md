@@ -1,6 +1,6 @@
 # Proposed Silver model (A5)
 
-Status: **awaiting joint approval from Person A and Person B**.
+Status: **Approved by Person A and Person B**.
 
 ## Record and key
 
