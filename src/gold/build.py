@@ -204,6 +204,17 @@ def _silver_inputs(ctx: RunContext) -> list[tuple[Path, dict]]:
         ):
             if (marker.parent / "records" / "_SUCCESS").is_file():
                 candidates.append(marker)
+        if len(candidates) > 1:
+            # old Silver versions can exist until retention removes them;
+            # use the one built from the newest Bronze version
+            from silver.transform import _completed_bronze_snapshot
+
+            _, newest = _completed_bronze_snapshot(period, ctx)
+            candidates = [
+                marker
+                for marker in candidates
+                if json.loads(marker.read_text(encoding="utf-8"))["source_sha256"] == newest
+            ]
         if len(candidates) != 1:
             raise ValueError(
                 f"Expected one completed Silver candidate for {period}, found {len(candidates)}"

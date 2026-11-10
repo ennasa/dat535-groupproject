@@ -100,6 +100,10 @@ silver:
 gold:
   allow_unvalidated_silver: false
 
+retention:                  # delete old versions after a full, successful run
+  enabled: true
+  bronze_versions_per_period: 2
+
 run:
   layers: [bronze, silver, gold]
   stop_on_quality_failure: true

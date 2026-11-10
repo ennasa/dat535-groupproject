@@ -6,3 +6,6 @@ source:
 
 logging:
   level: DEBUG
+
+retention:
+  bronze_versions_per_period: 1   # dev only needs the current version

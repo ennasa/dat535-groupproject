@@ -48,6 +48,7 @@ def main() -> None:
     log.info("Starting run %s in env=%s, layers=%s", run_id, config["env"], layers)
     spark = None
     results: list[LayerResult] = []
+    retention: dict | None = None
     try:
         for layer in layers:
             if any(r.status == "failed" for r in results):
@@ -60,11 +61,26 @@ def main() -> None:
                 result = _runner(layer)(spark, ctx)
             log.info("run_id=%s result=%s", run_id, asdict(result))
             results.append(result)
+
+        # Clean up old versions only after a full, successful run, so nothing is deleted
+        # that might be needed to recover from a failure.
+        full_run = set(layers) == {"bronze", "silver", "gold"}
+        if full_run and not any(r.status == "failed" for r in results):
+            from common.retention import apply_retention
+
+            retention = apply_retention(ctx)
+            log.info(
+                "run_id=%s retention removed %s folders, freed %.1f MB",
+                run_id,
+                len(retention["removed"]),
+                retention["freed_bytes"] / 1e6,
+            )
     finally:
         if spark is not None:
             spark.stop()
         if results:
-            log.info("run_id=%s manifest=%s", run_id, record_run_layers(ctx, results))
+            extra = {"retention": retention} if retention is not None else None
+            log.info("run_id=%s manifest=%s", run_id, record_run_layers(ctx, results, extra))
 
     failed = [r.layer for r in results if r.status == "failed"]
     if failed:

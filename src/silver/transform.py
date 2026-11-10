@@ -35,7 +35,7 @@ def _completed_bronze_snapshot(period: str, ctx: RunContext) -> tuple[Path, str]
         raise ValueError(f"Invalid annual period {period!r}")
 
     period_root = bronze_manifest.source_path(ctx) / f"period={period}"
-    candidates: list[tuple[Path, str]] = []
+    candidates: list[tuple[Path, str, str]] = []
     for marker in sorted(period_root.glob("source_version=*/_snapshot.json")):
         records = marker.parent / "records"
         if not (records / "_SUCCESS").is_file():
@@ -45,20 +45,19 @@ def _completed_bronze_snapshot(period: str, ctx: RunContext) -> tuple[Path, str]
             continue
         sha256 = marker.parent.name.removeprefix("source_version=")
         if re.fullmatch(r"[0-9a-f]{64}", sha256):
-            candidates.append((records, sha256))
+            candidates.append((records, sha256, snapshot.get("fetched_at", "")))
 
     approved = ctx.config.get("silver", {}).get("approved_source_versions", {}).get(period)
     if approved:
         matches = [candidate for candidate in candidates if candidate[1] == approved]
         if len(matches) != 1:
             raise ValueError(f"Approved Bronze version for {period} is not completed: {approved}")
-        return matches[0]
-    if len(candidates) != 1:
-        raise ValueError(
-            f"Expected one completed unchanged Bronze snapshot for {period}, found "
-            f"{len(candidates)}; configure silver.approved_source_versions"
-        )
-    return candidates[0]
+        return matches[0][:2]
+    if not candidates:
+        raise ValueError(f"No completed unchanged Bronze snapshot for {period}")
+    # Several versions means the source file was corrected. Use the newest download.
+    records, sha256, _ = max(candidates, key=lambda candidate: candidate[2])
+    return records, sha256
 
 
 def _silver_snapshot_path(period: str, source_sha256: str, ctx: RunContext) -> Path:
