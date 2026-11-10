@@ -28,9 +28,57 @@ spark:
 
 quality:
   max_reject_ratio: 0.05  # fail the run if more than 5% of records are rejected
-  rules: {}               # filled in during Silver (#17)
   allow_unvalidated_silver: false
-
+  # Silver quality rules (#18). Numbers in comments are from profiling 2023 (A4).
+  # reject = goes to quarantine, flag = kept but marked in _quality_flags
+  rules:
+    # --- reject: rows we cannot use ---
+    key_not_null:              # 0 rows in 2023
+      check: not_null
+      columns: [catch_year, sales_org_code, document_type_code, document_number, line_number]
+      action: reject
+    key_unique:                # 0 rows in 2023; clean() does not resolve conflicting keys
+      check: unique
+      columns: [catch_year, sales_org_code, document_type_code, document_number, line_number]
+      action: reject
+    landing_date_not_null:     # 0 rows; Gold needs the landing month
+      check: not_null
+      column: landing_date
+      action: reject
+    round_weight_not_negative: # 0 rows
+      check: range
+      column: round_weight_kg
+      min: 0
+      action: reject
+    product_weight_not_negative: # 0 rows
+      check: range
+      column: product_weight_kg
+      min: 0
+      action: reject
+    # --- flag: rows we keep but want to count ---
+    round_weight_missing:      # 1 row
+      check: not_null
+      column: round_weight_kg
+      action: flag
+    round_weight_zero:         # 169,439 rows; real zero, not missing
+      check: range
+      column: round_weight_kg
+      min: 0
+      exclusive_min: true
+      action: flag
+    landing_county_missing:    # 17,721 rows, mostly landings outside Norway
+      check: not_null
+      column: landing_county_code
+      action: flag
+    species_fao_missing:       # 150 rows
+      check: not_null
+      column: species_fao_code
+      action: flag
+    catch_value_missing:       # value is published 12 months after landing
+      check: not_null
+      column: catch_value_nok
+      action: flag
+      
 silver:
   allow_provisional_model: false
   approved_source_versions: {}
