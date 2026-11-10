@@ -23,7 +23,7 @@ from pyspark.sql.types import (
 )
 
 MODEL_VERSION = "a5-proposal-1"
-APPROVAL_STATUS = "awaiting-person-b-review"
+APPROVAL_STATUS = "approved"
 
 FieldRole = Literal["key", "dimension", "measure", "provenance"]
 

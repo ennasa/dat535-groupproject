@@ -61,7 +61,7 @@ def test_model_preserves_codes_and_uses_typed_measures():
 def test_review_sensitive_decisions_are_explicit():
     schema_names = set(silver_schema().fieldNames())
 
-    assert APPROVAL_STATUS == "awaiting-person-b-review"
+    assert APPROVAL_STATUS == "approved"
     assert set(DUPLICATE_ORDER).issubset(schema_names)
     assert all(join.join_type == "left" for join in REFERENCE_JOINS)
     assert all(join.unmatched_action == "retain-and-flag" for join in REFERENCE_JOINS)
