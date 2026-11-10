@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import logging
+import shutil
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
@@ -16,6 +17,24 @@ from bronze import schema as source_schema
 from common.contracts import LayerResult, RunContext
 
 log = logging.getLogger(__name__)
+
+def _publish(staging: Path, destination: Path, ctx: RunContext) -> None:
+    """Move a finished snapshot into place. With --force, replace the existing one safely."""
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    if not destination.exists():
+        staging.rename(destination)
+        return
+    # Forced re-ingest of the same file: move the old copy aside, put the new one in
+    # place, and only then delete the old copy, so a crash never leaves no snapshot.
+    old = destination.with_name(f"{destination.name}.replaced-{ctx.run_id}")
+    destination.rename(old)
+    try:
+        staging.rename(destination)
+    except Exception:
+        old.rename(destination)  # put the original back
+        raise
+    shutil.rmtree(old)
+    log.info("run_id=%s replaced snapshot %s (--force)", ctx.run_id, destination)
 
 
 def run(spark: SparkSession, ctx: RunContext) -> LayerResult:
@@ -46,7 +65,8 @@ def run(spark: SparkSession, ctx: RunContext) -> LayerResult:
                     }
                 )
                 destination = manifest.snapshot_path(fetched.sha256, period, ctx)
-                if manifest.is_ingested(fetched.sha256, ctx) and destination.is_dir():
+                already = manifest.is_ingested(fetched.sha256, ctx) and destination.is_dir()
+                if already and not ctx.force:
                     snapshot = json.loads((destination / "_snapshot.json").read_text("utf-8"))
                     schema_report = source_schema.compare_schema(snapshot["columns"], ctx.config)
                     schema_changed = schema_changed or schema_report.changed
@@ -122,8 +142,7 @@ def run(spark: SparkSession, ctx: RunContext) -> LayerResult:
                     "ingestion_run_id": ctx.run_id,
                 }
                 manifest.write_json(staging / "_snapshot.json", snapshot)
-                destination.parent.mkdir(parents=True, exist_ok=True)
-                staging.rename(destination)
+                _publish(staging, destination, ctx)
                 record.update(snapshot)
                 result.rows_in += inspected.rows
                 result.rows_out += rows_out
