@@ -10,3 +10,8 @@ src = ["src", "tests"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B"]
+
+
+[tool.ruff.lint.per-file-ignores]
+# notebooks add src/ to the import path in their first cell, so the imports come after it
+"notebooks/*.ipynb" = ["E402"]
