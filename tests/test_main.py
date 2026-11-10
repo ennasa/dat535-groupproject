@@ -46,6 +46,7 @@ def test_bronze_execution_and_failure_exit(monkeypatch, caplog, status, tmp_conf
             ]
             assert layers[1]["message"] == "upstream layer failed"
             assert _manifest(tmp_config)["status"] == "failed"
+            assert "retention" not in _manifest(tmp_config)  # never clean up after a failure
         else:
             main.main()
             assert "'layer': 'silver'" in caplog.text
@@ -80,6 +81,7 @@ def test_force_flag_reaches_layers(monkeypatch, tmp_config):
     main.main()
     assert runner.call_args.args[1].force is True
     assert _manifest(tmp_config)["force"] is True
+    assert "retention" not in _manifest(tmp_config)  # bronze only -> no clean-up
 
 
 def test_run_manifest_lists_every_layer(monkeypatch, tmp_config):
@@ -93,3 +95,4 @@ def test_run_manifest_lists_every_layer(monkeypatch, tmp_config):
     data = _manifest(tmp_config)
     assert [r["layer"] for r in data["layers"]] == ["bronze", "silver", "gold"]
     assert data["status"] == "success"
+    assert data["retention"]["enabled"] is True  # full successful run -> clean-up ran
