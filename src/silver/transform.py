@@ -18,6 +18,7 @@ from common.contracts import LayerResult, RuleResult, RunContext
 from silver.clean import clean
 from silver.enrich import DERIVED_COLUMNS, enrich
 from silver.model import APPROVAL_STATUS, MODEL_VERSION
+from silver.quality_report import build_period_report, report_path, write_report
 from silver.quarantine import write_rejected
 
 log = logging.getLogger(__name__)
@@ -126,8 +127,9 @@ def run(
                 f"Silver model {MODEL_VERSION} is {APPROVAL_STATUS}; joint A5 approval is required"
             ),
         )
-
+    
     messages: list[str] = []
+    report: dict[str, dict] = {}
     try:
         for period in periods:
             bronze_records, source_sha256 = _completed_bronze_snapshot(period, ctx)
@@ -158,6 +160,21 @@ def run(
             if rows_rejected:
                 writer = rejected_writer or partial(write_rejected, table=TABLE_NAME)
                 result.outputs.extend(writer(rejected, period, ctx) or [])
+
+            # written before the reject-ratio check, so a failed run still has a report
+            report[period] = build_period_report(
+                period,
+                bronze_df,
+                cleaned,
+                accepted,
+                rows_in=rows_in,
+                rows_cleaned=rows_cleaned,
+                rows_rejected=rows_rejected,
+                results=rule_results,
+                ctx=ctx,
+                table=TABLE_NAME,
+            )
+            write_report(ctx, report)
 
             reject_ratio = rows_rejected / rows_cleaned if rows_cleaned else 0.0
             if reject_ratio > ctx.config["quality"]["max_reject_ratio"]:
@@ -220,4 +237,6 @@ def run(
         log.exception("run_id=%s layer=silver status=failed", ctx.run_id)
         result.status = "failed"
         result.message = str(exc)
+    if report:
+        result.outputs.append(str(report_path(ctx)))
     return result
