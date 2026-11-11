@@ -229,6 +229,16 @@ Some things did not work as planned. The first time we validated Gold on real da
 
 Next, we would deploy automatically on merge and release tags, add alerts when a run fails, give Spark more memory, delete the extracted CSV files to save disk space, turn on branch protection, and run Spark on a real cluster.
 
+**Contributions.**
+- **ennasa:** repository setup, config and CI/CD (ci.yml, deploy.yml, run.yml), the two
+  self-hosted runners and environments on the VM, Silver quality rules engine, quarantine
+  and quality report, Gold validation and publishing, retention, nightly schedule, and the report.
+- **robotflame:** dataset choice and project definition, Bronze ingestion, source exploration
+  and profiling notebooks, Silver model, cleaning and enrichment, Gold tables, performance
+  benchmark.
+
+Both of us took part in the design decisions in `docs/design.md`.
+
 ## Use of AI tools
 
 Claude was used as a supporting tool for language refinement, idea development, and improving the structure and clarity of the text. All content was reviewed and revised by the author, who retains full responsibility for the final work.
