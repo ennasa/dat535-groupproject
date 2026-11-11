@@ -230,12 +230,15 @@ Some things did not work as planned. The first time we validated Gold on real da
 Next, we would deploy automatically on merge and release tags, add alerts when a run fails, give Spark more memory, delete the extracted CSV files to save disk space, turn on branch protection, and run Spark on a real cluster.
 
 **Contributions.**
-- **ennasa:** repository setup, config and CI/CD (ci.yml, deploy.yml, run.yml), the two
-  self-hosted runners and environments on the VM, Silver quality rules engine, quarantine
-  and quality report, Gold validation and publishing, retention, nightly schedule, and the report.
-- **robotflame:** dataset choice and project definition, Bronze ingestion, source exploration
-  and profiling notebooks, Silver model, cleaning and enrichment, Gold tables, performance
+- **robotflame:** dataset choice and project definition, and the first implementation of
+  the data layers (PR #48): Bronze ingestion, source exploration and profiling, the Silver
+  model proposal, cleaning and enrichment, the Gold tables, and the first local performance
   benchmark.
+- **ennasa:** repository structure, config loader and CI/CD, the design document, the
+  dev/prod environments and runners on the VM, `--force` re-ingest and run manifests,
+  review and approval of the Silver model, the quality rules engine and rules, quarantine,
+  the quality report, Gold validation and publishing, retention, the consumer notebook,
+  the nightly schedule, the VM performance runs, the documentation and this report.
 
 Both of us took part in the design decisions in `docs/design.md`.
 
