@@ -14,7 +14,7 @@ catch year (about 1.1 million rows and 133 columns per year). The last three cat
 corrected almost every night, so the pipeline must keep the data correct as the source
 changes, without counting the same landings twice.
 
-> **Report:** [Project report](docs/report.md): design choices, results, performance
+> **Report:** [Project report](report.md): design choices, results, performance
 > analysis and limitations.
 
 ![Architecture](docs/figures/architecture.png)
