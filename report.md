@@ -229,9 +229,22 @@ Some things did not work as planned. The first time we validated Gold on real da
 
 Next, we would deploy automatically on merge and release tags, add alerts when a run fails, give Spark more memory, delete the extracted CSV files to save disk space, turn on branch protection, and run Spark on a real cluster.
 
+**Contributions.**
+- **robotflame:** dataset choice and project definition, and the first implementation of
+  the data layers (PR #48): Bronze ingestion, source exploration and profiling, the Silver
+  model proposal, cleaning and enrichment, the Gold tables, and the first local performance
+  benchmark.
+- **ennasa:** repository structure, config loader and CI/CD, the design document, the
+  dev/prod environments and runners on the VM, `--force` re-ingest and run manifests,
+  review and approval of the Silver model, the quality rules engine and rules, quarantine,
+  the quality report, Gold validation and publishing, retention, the consumer notebook,
+  the nightly schedule, the VM performance runs, the documentation and this report.
+
+Both of us took part in the design decisions in `docs/design.md`.
+
 ## Use of AI tools
 
-Claude was used as a supporting tool for language refinement, idea development, and improving the structure and clarity of the text. All content was reviewed and revised by the author, who retains full responsibility for the final work.
+We used the AI assistants Claude and Codex throughout the project: to generate and explain code and tests, to help debug, to draft documentation, and to help write and edit this report. All code was reviewed, run and tested by us, and all results come from our own pipeline runs. We are responsible for the final work.
 
 ## References
 
