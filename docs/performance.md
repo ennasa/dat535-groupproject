@@ -1,7 +1,7 @@
 # Silver performance evidence (A8)
 
-Status: **local WSL comparison complete; final VM repetition and Spark UI screenshots
-remain required**.
+Status: **local WSL comparison and VM repetition complete** (see "VM repetition" below).
+Spark UI screenshots were not captured.
 
 ## Method
 
@@ -65,6 +65,30 @@ PYTHONPATH=src python scripts/benchmark_silver.py \
 Then summarise each event-log directory with `scripts/summarize_spark_eventlog.py` and
 capture the corresponding Jobs and Stages pages from Spark History Server. VM numbers
 and screenshots, not the local WSL timings, are the final report evidence.
+
+## VM repetition (11 November 2026)
+
+Both strategies were rerun on the project VM (4 cores, 7.8 GB RAM, PySpark 3.5.0,
+Java 8, Python 3.11, `local[*]`, 8 shuffle partitions, default 1 GB driver memory) on the
+same 2023 Bronze snapshot. Unlike the local runs, these runs include the Silver quality
+rules and the quality report. One run per strategy.
+
+| Measure | Baseline | Optimized | Change |
+|---|---:|---:|---:|
+| Wall duration | 123.606 s | 99.832 s | −19.2% |
+| Spark application duration | 120.919 s | 97.676 s | −19.2% |
+| Executor CPU time | 200.6 s | 165.8 s | −17.4% |
+| Shuffle read / write | 1,545.7 / 1,545.7 MB | 301.8 / 301.8 MB | −80.5% |
+| Memory spill | 6,333.4 MB | 2,701.1 MB | −57.4% |
+| Disk spill | 1,617.8 MB | 632.6 MB | −60.9% |
+| Rows in / out | 1,079,929 / 1,079,929 | same | |
+
+The two largest baseline shuffle stages (474.5 MB each) come from the full-row
+deduplication and are absent in the optimized run. The gain is smaller than locally
+because the quality rules and report cost the same in both runs. Both runs still spill,
+mainly because of the default 1 GB driver memory; one optimized stage is skewed (largest
+task 38.6 s vs. median 0.17 s). Evidence: `evidence/a8-baseline-vm.json`,
+`evidence/a8-optimized-vm.json`.
 
 ## Evidence files
 

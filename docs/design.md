@@ -1,6 +1,6 @@
 # DAT535 Medallion Pipeline: Design Document
 
-_TBD_ marks decisions that depend on the dataset (#1) or on profiling (#15).
+Status (11 Nov 2026): all layers are implemented. This document records the decisions; sections marked as proposals were later approved (model: #50, rules: #52).
 
 ## 1. Goals and scope
 
@@ -40,7 +40,7 @@ Out of scope: streaming ingestion, a production-grade dashboard, managed cloud s
         ▼
  GOLD     gold/<table>/                            published only if checks pass
         ▼
- Consumer (TBD)
+ Consumer notebook (Spark SQL)
 
  src/main.py runs the layers in order with one run ID and stops downstream on failure.
 
@@ -171,7 +171,7 @@ quality:
 - **Method (A1 / #9):** download the public annual catch/vessel ZIP over HTTPS and extract its UTF-8, semicolon-separated CSV. Start with catch year 2023. Current and previous two catch years refresh nightly except the night leading into Saturday; older years refresh when needed. The download URL, expected raw schema and local exploration evidence are recorded in [`01_explore_source.ipynb`](../notebooks/01_explore_source.ipynb). Batch ingestion is implemented separately in A2 (#10).
 - **Preserve:** original ZIP and CSV bytes retained; a separate Parquet copy keeps source fields as strings and adds provenance. No rows dropped.
 - **Layout:** partitioned by catch year and archive SHA-256; completed staging directories are renamed into place after row reconciliation.
-- **Idempotency:** completed snapshots are skipped by checksum and recorded in a per-run manifest. Administrative `--force` behaviour remains future work.
+- **Idempotency:** completed snapshots are skipped by checksum and recorded in a per-run manifest. `--force` re-ingests a year even if the same file is already stored (#49).
 - **Late data:** a revised archive creates another version within the catch year. Earlier versions remain available; Silver must select one recorded snapshot per year.
 - **Schema changes:** compare every CSV header with the versioned 2023 A1 baseline in `src/bronze/expected_schema.json`. Added columns are retained; added, missing, reordered or retyped fields are stored in snapshot/run metadata and included in `LayerResult.message`. A changed snapshot is preserved, but Bronze returns `failed` to stop downstream publication until review.
 
@@ -195,8 +195,7 @@ Each decision is recorded with its reason.
   timestamp and source update date; conflicting ties are quarantined. Silver uses
   one approved Bronze snapshot per catch year and preserves its SHA-256; approved
   revisions atomically rebuild that year. Reference joins are left, many-to-one joins
-  on stable codes, with unmatched rows retained and flagged. **Awaiting Person B review
-  before this joint decision is final.**
+  on stable codes, with unmatched rows retained and flagged. **Approved by both (#50).**
 - **Cleaning and standardisation (A6 / #19):** `src/silver/clean.py` maps Bronze to
   the proposed 74-field contract; applies English `snake_case` names; trims text and
   converts blanks to null; preserves codes as strings; parses Norwegian dates and
@@ -205,7 +204,7 @@ Each decision is recorded with its reason.
   removes exact non-provenance duplicates. Landing clock time stays local because its
   time zone is not reliable for every landing. Invalid casts become null for the quality
   policy rather than being silently discarded. See [`silver-cleaning.md`](silver-cleaning.md).
-- **Quality rules and policy:** _TBD (#17, #18):_ rule → check → action → reason.
+- **Quality rules and policy (#17, #18):** config-driven rules in `config/base.yaml` (`quality.rules`), engine in `src/silver/rules.py`. Reject: missing or duplicated key, no landing date, negative weights. Flag: missing/zero round weight, missing landing county, missing FAO code, missing catch value. Rejected rows go to quarantine (#20); each run writes a before/after quality report (#22).
 - **Enrichment (A7 proposal / #21):** `src/silver/enrich.py` adds a stable record ID,
   landing calendar fields, the code-13 following-year flag, catch-to-landing days and
   domestic/FAO coverage flags. Optional reference tables use validated many-to-one

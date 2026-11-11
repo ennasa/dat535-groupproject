@@ -1,0 +1,287 @@
+{
+  "application_duration_seconds": 120.919,
+  "jobs": 31,
+  "stages": 31,
+  "tasks": 136,
+  "totals": {
+    "executor_run_ms": 266396,
+    "executor_cpu_ns": 200644746164,
+    "gc_ms": 33113,
+    "input_bytes": 1979586938,
+    "output_bytes": 134399689,
+    "shuffle_read_bytes": 1545729255,
+    "shuffle_write_bytes": 1545729255,
+    "memory_spill_bytes": 6333399040,
+    "disk_spill_bytes": 1617778897
+  },
+  "highest_shuffle_write_stages": [
+    {
+      "stage_id": 22,
+      "name": "count at NativeMethodAccessorImpl.java:0",
+      "tasks": 8,
+      "task_duration_ms": {
+        "median": 2048.5,
+        "maximum": 2956,
+        "max_to_median_ratio": 1.443
+      },
+      "executor_run_ms": 16427,
+      "executor_cpu_ns": 12711046167,
+      "gc_ms": 488,
+      "input_bytes": 191253216,
+      "output_bytes": 0,
+      "shuffle_read_bytes": 0,
+      "shuffle_write_bytes": 474543925,
+      "memory_spill_bytes": 0,
+      "disk_spill_bytes": 0
+    },
+    {
+      "stage_id": 55,
+      "name": "count at NativeMethodAccessorImpl.java:0",
+      "tasks": 8,
+      "task_duration_ms": {
+        "median": 1353.5,
+        "maximum": 1790,
+        "max_to_median_ratio": 1.322
+      },
+      "executor_run_ms": 10692,
+      "executor_cpu_ns": 9101171377,
+      "gc_ms": 435,
+      "input_bytes": 191253216,
+      "output_bytes": 0,
+      "shuffle_read_bytes": 0,
+      "shuffle_write_bytes": 474543925,
+      "memory_spill_bytes": 0,
+      "disk_spill_bytes": 0
+    },
+    {
+      "stage_id": 4,
+      "name": "count at NativeMethodAccessorImpl.java:0",
+      "tasks": 4,
+      "task_duration_ms": {
+        "median": 391.5,
+        "maximum": 53966,
+        "max_to_median_ratio": 137.844
+      },
+      "executor_run_ms": 54960,
+      "executor_cpu_ns": 51125631780,
+      "gc_ms": 2193,
+      "input_bytes": 40335276,
+      "output_bytes": 0,
+      "shuffle_read_bytes": 0,
+      "shuffle_write_bytes": 454145823,
+      "memory_spill_bytes": 1493172224,
+      "disk_spill_bytes": 307638055
+    },
+    {
+      "stage_id": 46,
+      "name": "first at /home/ubuntu/dat535-bench/src/silver/quality_report.py:44",
+      "tasks": 8,
+      "task_duration_ms": {
+        "median": 362.5,
+        "maximum": 640,
+        "max_to_median_ratio": 1.766
+      },
+      "executor_run_ms": 2974,
+      "executor_cpu_ns": 2177946646,
+      "gc_ms": 124,
+      "input_bytes": 191253216,
+      "output_bytes": 0,
+      "shuffle_read_bytes": 0,
+      "shuffle_write_bytes": 49186113,
+      "memory_spill_bytes": 0,
+      "disk_spill_bytes": 0
+    },
+    {
+      "stage_id": 13,
+      "name": "first at /home/ubuntu/dat535-bench/src/silver/rules.py:92",
+      "tasks": 8,
+      "task_duration_ms": {
+        "median": 399.5,
+        "maximum": 696,
+        "max_to_median_ratio": 1.742
+      },
+      "executor_run_ms": 3350,
+      "executor_cpu_ns": 2150113255,
+      "gc_ms": 170,
+      "input_bytes": 191253216,
+      "output_bytes": 0,
+      "shuffle_read_bytes": 0,
+      "shuffle_write_bytes": 46653199,
+      "memory_spill_bytes": 0,
+      "disk_spill_bytes": 0
+    }
+  ],
+  "highest_skew_ratio_stages": [
+    {
+      "stage_id": 4,
+      "name": "count at NativeMethodAccessorImpl.java:0",
+      "tasks": 4,
+      "task_duration_ms": {
+        "median": 391.5,
+        "maximum": 53966,
+        "max_to_median_ratio": 137.844
+      },
+      "executor_run_ms": 54960,
+      "executor_cpu_ns": 51125631780,
+      "gc_ms": 2193,
+      "input_bytes": 40335276,
+      "output_bytes": 0,
+      "shuffle_read_bytes": 0,
+      "shuffle_write_bytes": 454145823,
+      "memory_spill_bytes": 1493172224,
+      "disk_spill_bytes": 307638055
+    },
+    {
+      "stage_id": 37,
+      "name": "first at /home/ubuntu/dat535-bench/src/silver/quality_report.py:44",
+      "tasks": 4,
+      "task_duration_ms": {
+        "median": 39.0,
+        "maximum": 712,
+        "max_to_median_ratio": 18.256
+      },
+      "executor_run_ms": 783,
+      "executor_cpu_ns": 630687965,
+      "gc_ms": 88,
+      "input_bytes": 16095148,
+      "output_bytes": 0,
+      "shuffle_read_bytes": 0,
+      "shuffle_write_bytes": 253,
+      "memory_spill_bytes": 0,
+      "disk_spill_bytes": 0
+    },
+    {
+      "stage_id": 41,
+      "name": "first at /home/ubuntu/dat535-bench/src/silver/quality_report.py:44",
+      "tasks": 8,
+      "task_duration_ms": {
+        "median": 182.0,
+        "maximum": 333,
+        "max_to_median_ratio": 1.83
+      },
+      "executor_run_ms": 1376,
+      "executor_cpu_ns": 911088518,
+      "gc_ms": 80,
+      "input_bytes": 191253216,
+      "output_bytes": 0,
+      "shuffle_read_bytes": 0,
+      "shuffle_write_bytes": 580,
+      "memory_spill_bytes": 0,
+      "disk_spill_bytes": 0
+    },
+    {
+      "stage_id": 46,
+      "name": "first at /home/ubuntu/dat535-bench/src/silver/quality_report.py:44",
+      "tasks": 8,
+      "task_duration_ms": {
+        "median": 362.5,
+        "maximum": 640,
+        "max_to_median_ratio": 1.766
+      },
+      "executor_run_ms": 2974,
+      "executor_cpu_ns": 2177946646,
+      "gc_ms": 124,
+      "input_bytes": 191253216,
+      "output_bytes": 0,
+      "shuffle_read_bytes": 0,
+      "shuffle_write_bytes": 49186113,
+      "memory_spill_bytes": 0,
+      "disk_spill_bytes": 0
+    },
+    {
+      "stage_id": 13,
+      "name": "first at /home/ubuntu/dat535-bench/src/silver/rules.py:92",
+      "tasks": 8,
+      "task_duration_ms": {
+        "median": 399.5,
+        "maximum": 696,
+        "max_to_median_ratio": 1.742
+      },
+      "executor_run_ms": 3350,
+      "executor_cpu_ns": 2150113255,
+      "gc_ms": 170,
+      "input_bytes": 191253216,
+      "output_bytes": 0,
+      "shuffle_read_bytes": 0,
+      "shuffle_write_bytes": 46653199,
+      "memory_spill_bytes": 0,
+      "disk_spill_bytes": 0
+    }
+  ],
+  "run": {
+    "label": "baseline-vm",
+    "started_at_utc": "2026-11-11T07:57:09.063038+00:00",
+    "finished_at_utc": "2026-11-11T07:59:12.668620+00:00",
+    "wall_duration_seconds": 123.606,
+    "spark": {
+      "master": "local[*]",
+      "shuffle_partitions": "8",
+      "event_log": "data/performance/baseline-vm/spark-events"
+    },
+    "dedup_strategy": "baseline",
+    "result": {
+      "layer": "silver",
+      "status": "success",
+      "rows_in": 1079929,
+      "rows_out": 1079929,
+      "rows_rejected": 0,
+      "outputs": [
+        "/home/ubuntu/dat535/performance/baseline-vm/silver/catch_document_line/period=2023/source_version=71783c32df9bdf3af86c0fa3ae4b56523d7dea4836349189490d2dcbf99a0592/model_version=a5-proposal-1",
+        "/home/ubuntu/dat535/dev/reports/quality/perf-baseline-vm.json"
+      ],
+      "rules": [
+        {
+          "rule": "key_not_null",
+          "action": "reject",
+          "failed": 0
+        },
+        {
+          "rule": "key_unique",
+          "action": "reject",
+          "failed": 0
+        },
+        {
+          "rule": "landing_date_not_null",
+          "action": "reject",
+          "failed": 0
+        },
+        {
+          "rule": "round_weight_not_negative",
+          "action": "reject",
+          "failed": 0
+        },
+        {
+          "rule": "product_weight_not_negative",
+          "action": "reject",
+          "failed": 0
+        },
+        {
+          "rule": "round_weight_missing",
+          "action": "flag",
+          "failed": 1
+        },
+        {
+          "rule": "round_weight_zero",
+          "action": "flag",
+          "failed": 169439
+        },
+        {
+          "rule": "landing_county_missing",
+          "action": "flag",
+          "failed": 17721
+        },
+        {
+          "rule": "species_fao_missing",
+          "action": "flag",
+          "failed": 150
+        },
+        {
+          "rule": "catch_value_missing",
+          "action": "flag",
+          "failed": 26434
+        }
+      ],
+      "message": "2023: 1079929 Bronze -> 1079929 clean -> 1079929 Silver (rules-engine)"
+    }
+  }
+}

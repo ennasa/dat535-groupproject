@@ -1,6 +1,6 @@
 # Prosjektdefinisjon for norsk fiskeridata
 
-Status: foreløpig utkast, 25. oktober 2026. Datasettvalg, datavolum og detaljerte feltregler skal bekreftes gjennom profilering. Dette dokumentet beskriver planlagt arbeid, ikke gjennomførte resultater.
+Status: prosjektdefinisjon til check-in, 25. oktober 2026. Dokumentet beskriver planlagt arbeid; se README og `docs/` for det som er gjennomført.
 
 ## 1. Prosjektbeskrivelse
 
@@ -41,9 +41,9 @@ Dashboardet viser sesongmønstre og årssammenligninger, med filtre for år, reg
 
 Kode, konfigurasjon og dokumentasjon versjoneres i Git. Endringer gjennomgås i PR og merges med squash. `PIPELINE_ENV` velger dev/prod-konfigurasjon. GitHub Actions kjører automatiske kontroller; planlagt pipelinekjøring skjer på VM via self-hosted runner når dette er satt opp.
 
-Kontroller dekker filinnlesing, skjema, sentrale kvalitetsregler, gjentatt kjøring, rettelser og Gold-avstemming. Loggene viser status, radantall, avvisninger og kildeversjoner. README skal forklare oppsett, kjøring, reprosessering og gjenoppretting etter feil. Said leder data, del 1–3 og Gold; Sanne leder drift og del 6; Silver og PR-review gjøres sammen.
+Kontroller dekker filinnlesing, skjema, sentrale kvalitetsregler, gjentatt kjøring, rettelser og Gold-avstemming. Loggene viser status, radantall, avvisninger og kildeversjoner. README skal forklare oppsett, kjøring, reprosessering og gjenoppretting etter feil. Person A leder data, del 1–3 og Gold; person B leder drift og del 6; Silver og PR-review gjøres sammen.
 
 ## Kilder
 
 - [Fiskeridirektoratet — fangstdata koblet med fartøydata](https://www.fiskeridir.no/statistikk-tall-og-analyse/data-og-statistikk-om-yrkesfiske/apne-data-fangstdata-seddel-koblet-med-fartoydata).
-- Data Engineering Project Definition Guide, vedlagt i samtalen.
+- Data Engineering Project Definition Guide (DAT535).
