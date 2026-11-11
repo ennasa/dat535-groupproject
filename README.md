@@ -160,5 +160,4 @@ Both environments share one VM (4 cores, 7.8 GB RAM); runs are queued one at a t
 | Ennasa | Repository, CI/CD and environments, design document; Silver quality rules, quarantine and quality report; Gold validation and publishing; retention; consumer notebook; report |
 | Robot flame | Dataset and project definition; first implementation of Bronze, Silver and Gold (#48); profiling; performance benchmark |
 
-The AI assistant Claude was used during the project, including for generating parts of the
-code and documentation; all code was reviewed and tested by the team.
+The AI assistants Claude and Codex were used during the project, including for generating parts of the code and documentation; all code was reviewed and tested by the team.
