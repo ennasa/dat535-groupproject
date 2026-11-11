@@ -59,9 +59,11 @@ Repeated builds skip an existing candidate.
 
 Normal execution rejects Silver unless its model is approved and its quality mode is
 `rules-engine`. The local A9/A10 preview explicitly overrides that gate, writes only to
-ignored `data/preview`, and is labelled unvalidated. Person B's `gold.validate` and
-`gold.publish` components must independently validate measures and promote the
-candidate; A9 does not create a “latest published” pointer.
+ignored `data/preview`, and is labelled unvalidated. In the normal pipeline,
+`src/gold/validate.py` checks the stored candidate against Silver (exact totals, unique
+grain, no orphan rows, species totals and shares), and `src/gold/publish.py` moves the
+pointer `_published.json` only if every check passes. The consumer notebook reads only the
+published version.
 
 ## Local preview evidence
 

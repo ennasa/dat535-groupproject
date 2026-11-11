@@ -56,6 +56,6 @@ blocks publication.
 ## Current boundary
 
 The A7 code, derived fields, reference-join contract, CLI wiring, staging, reconciliation
-and idempotency are tested. A full dev Silver snapshot has intentionally not been
-published because A5 approval, B4/B5 rules and B6 quarantine are not yet present. Once
-those shared components are connected, the existing transform can perform the dev run.
+and idempotency are tested. Since the model approval (#50), the quality rules (#51, #52)
+and the quarantine (#53), Silver runs as part of the normal pipeline on dev (2023) and
+prod (2023–2025).

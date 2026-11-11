@@ -64,15 +64,19 @@ PIPELINE_ENV=dev python src/main.py --layers bronze    # one layer
 
 Each run gets a run ID (a random UUID locally, the GitHub Actions run ID in workflows). Pass your own with `--run-id`.
 
-**Implementation status:** Bronze ingestion; the proposed Silver model, cleaning,
-enrichment and orchestration; and Gold candidate construction are implemented. Silver
-publication remains gated until the joint model approval and quality/quarantine
-components are available. Gold similarly remains a candidate until validation and
-publication are connected. Use `--layers bronze` for a currently complete standalone layer.
-Original ZIP/CSV files, versioned Parquet and run manifests are stored under `data/dev`.
-See [Bronze ingestion](docs/bronze-ingestion.md) and
-[Silver enrichment](docs/silver-enrichment.md) for details. The isolated local Gold
-preview and consumer are documented in [Gold model](docs/gold-model.md).
+**Status:** the full pipeline is implemented and has run on both environments.
+
+| Layer | What it does | Docs |
+|---|---|---|
+| Bronze | Downloads each catch year, keeps every version unchanged (by SHA-256), adds metadata, checks the schema; `--force` re-ingests | [Bronze ingestion](docs/bronze-ingestion.md) |
+| Silver | Cleans, applies the quality rules in `config/base.yaml` (reject / flag), writes rejected rows to quarantine and a before/after quality report per run | [Silver model](docs/silver-model.md), [cleaning](docs/silver-cleaning.md), [enrichment](docs/silver-enrichment.md) |
+| Gold | Builds a star schema (month × region × species), validates it against Silver, and publishes it only if every check passes | [Gold model](docs/gold-model.md) |
+| Consumer | Reads the published Gold and answers the question in Spark SQL | [`03_gold_consumer.ipynb`](notebooks/03_gold_consumer.ipynb) |
+
+After a full, successful run, old versions are deleted (retention), and Silver always uses
+the newest Bronze version of each year. Each run writes a manifest
+(`<storage>/manifests/<run_id>.json`) and a quality report (`<storage>/reports/quality/<run_id>.json`).
+Performance evidence is in [performance.md](docs/performance.md).
 
 ## Configuration
 
@@ -107,7 +111,7 @@ Labels (`setup`, `docs`, `bronze`, `silver`, `gold`, `ops`) and milestones (Phas
 | Config | `config/dev.yaml` | `config/prod.yaml` |
 | Deployed from | `main` | release tags `v*` |
 
-**Current status:** the self-hosted runners are not registered yet, so `deploy.yml` and `run.yml` are **manual only** (Actions → workflow → *Run workflow*). The scheduled run in `run.yml` is commented out until the prod runner exists.
+**Current status:** both runners run on one VM, with separate storage (`~/dat535/dev`, `~/dat535/prod`). Dev processes catch year 2023, prod 2023–2025. `deploy.yml` is started manually (Actions → Deploy → *Run workflow*); automatic deploys on merge/tag are not enabled yet. `run.yml` runs on prod every night at 03:17 UTC and can also be started manually.
 
 ## Team
 
